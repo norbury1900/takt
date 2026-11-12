@@ -1,0 +1,5 @@
+Third-party assets bundled in this repository:
+
+- Zhuque Fangsong (朱雀仿宋) font, bundled in app/src/main/res/font/,
+  (c) Triones Type Project, licensed under SIL Open Font License 1.1.
+  Upstream: https://github.com/TrionesType/zhuque
