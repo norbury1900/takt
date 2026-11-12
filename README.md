@@ -1,16 +1,16 @@
-# Takt
+# Taktu
 
 **English | [简体中文](README.zh-CN.md)**
 
 > An Android task reminder that stays silent — unless you really haven't done it.
 
-A regular alarm fires at the set time, no matter what. Takt works the opposite way: **at the reminder time it first checks whether you've actually done the task. Done — it stays silent. Not done — it rings.** Then it re-checks at the follow-up time. It is an *execution* reminder, not a *logging* habit tracker — the goal is getting things actually done.
+A regular alarm fires at the set time, no matter what. Taktu works the opposite way: **at the reminder time it first checks whether you've actually done the task. Done — it stays silent. Not done — it rings.** Then it re-checks at the follow-up time. It is an *execution* reminder, not a *logging* habit tracker — the goal is getting things actually done.
 
-Example: set "Hanging leg raises × 60", deadline 20:00, prompt 30 minutes early, re-check 2 hours later. At 19:30 Takt checks once — done, silence; not done, it rings. At 22:00 it re-checks, and rings again if you still haven't.
+Example: set "Hanging leg raises × 60", deadline 20:00, prompt 30 minutes early, re-check 2 hours later. At 19:30 Taktu checks once — done, silence; not done, it rings. At 22:00 it re-checks, and rings again if you still haven't.
 
 ## Works with AI agents
 
-Takt exposes a LAN HTTP interface designed for AI coding agents — **Claude Code, WorkBuddy, or anything that can call HTTP**. This is what sets it apart from every other reminder app: your agent turns the conversation into real, ringing tasks.
+Taktu exposes a LAN HTTP interface designed for AI coding agents — **Claude Code, WorkBuddy, or anything that can call HTTP**. This is what sets it apart from every other reminder app: your agent turns the conversation into real, ringing tasks.
 
 1. Enable "External control" in the app's Settings page (off by default; the page shows the LAN address and the `X-Token`)
 2. Point your agent at the interface — it can read tasks, push new ones, edit, delete:
@@ -117,7 +117,7 @@ Everything stays on the device: no network access, no upload, no analytics SDK, 
 
 ## Important notes
 
-- Takt is a **reminder aid, not a safety net**. For things you cannot afford to miss (medication, payments, exams), keep a system alarm or another reliable means as backup. How reliably ringing works depends on your device, OS version, and ROM background policies.
+- Taktu is a **reminder aid, not a safety net**. For things you cannot afford to miss (medication, payments, exams), keep a system alarm or another reliable means as backup. How reliably ringing works depends on your device, OS version, and ROM background policies.
 - Finish the in-app permission checklist before relying on it, especially the ROM-specific steps (autostart, battery whitelist).
 - External control is off by default. If you enable it, keep the token private and use it only on networks you control.
 
@@ -158,7 +158,7 @@ app/src/main/java/com/norbury/taskalarm/
 
 ## Support
 
-If Takt saves you some missed reminders, a small donation is appreciated: [Afdian / 爱发电](https://afdian.com/a/norbury). Takt is and stays fully free — donations only fund development.
+If Taktu saves you some missed reminders, a small donation is appreciated: [Afdian / 爱发电](https://afdian.com/a/norbury). Taktu is and stays fully free — donations only fund development.
 
 ## License
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Takt</string>
+    <string name="app_name">Taktu</string>
     <string name="app_slogan">到点不响，除非你真的没做</string>
 
     <!-- 首页 -->
@@ -330,7 +330,7 @@
     <string name="perm_notif_bad">未开启。响铃时可能看不到任何提示</string>
     <string name="perm_channel_title">响铃通知渠道</string>
     <string name="perm_channel_ok">正常。声音走「闹钟音量」通道，静音模式也能响</string>
-    <string name="perm_channel_bad">被关闭或降级了。请在通知设置里把「Takt 响铃」恢复为「紧急」</string>
+    <string name="perm_channel_bad">被关闭或降级了。请在通知设置里把「Taktu 响铃」恢复为「紧急」</string>
     <string name="perm_fullscreen_title">锁屏全屏提醒</string>
     <string name="perm_fullscreen_ok">已允许。锁屏时能直接弹出响铃页</string>
     <string name="perm_fullscreen_bad">未允许。锁屏时只能收到普通通知（安卓 14 以上需单独授予）</string>
@@ -344,7 +344,7 @@
     <string name="btn_test_ring_full">测试响铃（立即响一次）</string>
     <string name="btn_reschedule">重新排定所有提醒</string>
 
-    <string name="notif_channel_name">Takt 响铃</string>
+    <string name="notif_channel_name">Taktu 响铃</string>
     <string name="notif_channel_desc">到点未完成任务时响铃，声音为闹钟音量</string>
 
     <!-- 导入任务 -->

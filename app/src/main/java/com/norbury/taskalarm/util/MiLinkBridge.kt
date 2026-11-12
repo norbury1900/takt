@@ -225,7 +225,7 @@ object MiLinkBridge {
             put(CalendarContract.Calendars.ACCOUNT_NAME, CALENDAR_TAG)
             put(CalendarContract.Calendars.ACCOUNT_TYPE, CalendarContract.ACCOUNT_TYPE_LOCAL)
             put(CalendarContract.Calendars.NAME, CALENDAR_TAG)
-            put(CalendarContract.Calendars.CALENDAR_DISPLAY_NAME, "Takt")
+            put(CalendarContract.Calendars.CALENDAR_DISPLAY_NAME, "Taktu")
             put(CalendarContract.Calendars.CALENDAR_COLOR, 0xFF7A5C.toInt())
             put(CalendarContract.Calendars.CALENDAR_ACCESS_LEVEL, CalendarContract.Calendars.CAL_ACCESS_OWNER)
             put(CalendarContract.Calendars.OWNER_ACCOUNT, CALENDAR_TAG)
