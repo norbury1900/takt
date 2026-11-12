@@ -8,6 +8,26 @@ A regular alarm fires at the set time, no matter what. Takt works the opposite w
 
 Example: set "Hanging leg raises × 60", deadline 20:00, prompt 30 minutes early, re-check 2 hours later. At 19:30 Takt checks once — done, silence; not done, it rings. At 22:00 it re-checks, and rings again if you still haven't.
 
+## Works with AI agents
+
+Takt exposes a LAN HTTP interface designed for AI coding agents — **Claude Code, WorkBuddy, or anything that can call HTTP**. This is what sets it apart from every other reminder app: your agent turns the conversation into real, ringing tasks.
+
+1. Enable "External control" in the app's Settings page (off by default; the page shows the LAN address and the `X-Token`)
+2. Point your agent at the interface — it can read tasks, push new ones, edit, delete:
+
+```bash
+# Let the agent read the current plan
+curl -s -H "X-Token: $TOKEN" http://<phone-ip>:8931/tasks
+
+# Push a plan extracted from the conversation (any format tolerance)
+curl -s -X POST -H "X-Token: $TOKEN" -H "Content-Type: application/json" \
+     --data-binary @plan.json http://<phone-ip>:8931/import
+```
+
+3. Nothing lands in the database until **you confirm it on the phone** — the agent proposes, you decide.
+
+Typical flows: "把这些加进我的训练计划" mid-conversation and the plan is on your phone before you unlock it; weekly review where the agent reads the past week's records and rebalances the schedule. Full endpoint reference in `util/ControlServer.kt`.
+
 ## Requirements
 
 | Item | Requirement |

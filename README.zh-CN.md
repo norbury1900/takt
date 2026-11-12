@@ -8,6 +8,26 @@
 
 例子：设定「单杠抬腿 60 次」，截止 20:00，催促提前 30 分钟，复查延后 2 小时。App 在 19:30 查一次，做了就静默；没做才响铃。22:00 复查，仍未做就再响一次。
 
+## AI 集成（与其他提醒 App 的根本区别）
+
+Takt 提供一套专为 AI agent 设计的局域网 HTTP 接口——**Claude Code、WorkBuddy，任何能发 HTTP 的工具都行**。对话里说一句，agent 直接把任务排进手机：这是它和其他所有提醒类 App 不一样的地方。
+
+1. 在 App 设置页打开「外部控制」（默认关闭；页面显示局域网地址和 `X-Token`）
+2. 让 agent 对接接口——可以读任务、推任务、改、删：
+
+```bash
+# agent 读取当前全部任务
+curl -s -H "X-Token: $TOKEN" http://<手机IP>:8931/tasks
+
+# 把对话里聊好的计划推进手机（解析带容错）
+curl -s -X POST -H "X-Token: $TOKEN" -H "Content-Type: application/json" \
+     --data-binary @plan.json http://<手机IP>:8931/import
+```
+
+3. 推送的内容**不直接落库**——必须由你在手机预览页亲手确认：agent 提议，你拍板。
+
+典型场景：聊完训练计划说一句「把这些排进去」，解锁手机时任务已经在响铃队列里了；每周复盘时 agent 读完过去一周的记录，自动重排下一周。接口全表见 `util/ControlServer.kt`。
+
 ## 运行要求
 
 | 项 | 要求 |
