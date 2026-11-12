@@ -15,7 +15,7 @@
   <a href="./README.zh-CN.md">简体中文</a>
 </p>
 
-> An Android task reminder that stays silent — unless you really haven't done it.
+> An Android reminder app your AI agent can schedule tasks into — it stays silent unless you really haven't done it.
 
 A regular alarm fires at the set time, no matter what. Taktu works the opposite way: **at the reminder time it first checks whether you've actually done the task. Done — it stays silent. Not done — it rings.** Then it re-checks at the follow-up time. It is an *execution* reminder, not a *logging* habit tracker — the goal is getting things actually done.
 
