@@ -1,0 +1,16 @@
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/app/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# AI 协作文档：含本机内网信息，不入公开仓库
+CLAUDE.md
+AGENTS.md
+TASK_JSON.md

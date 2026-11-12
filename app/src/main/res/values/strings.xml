@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Takt</string>
+    <string name="app_slogan">到点不响，除非你真的没做</string>
+
+    <!-- 首页 -->
+    <string name="task_list_title">今日任务</string>
+    <string name="home_empty_title">还没有任务</string>
+    <string name="home_empty_desc">点「新建任务」开始</string>
+    <string name="btn_new_task">新建任务</string>
+    <string name="btn_settings">设置</string>
+    <string name="btn_stats">统计</string>
+    <string name="btn_test_ring">测试</string>
+    <string name="perm_banner_exact">未开启「闹钟和提醒」权限，提醒时间可能不准。点此去开启</string>
+    <string name="perm_banner_notif">通知权限未开启，响铃可能无法弹出。点此去开启</string>
+
+    <!-- 任务项 -->
+    <string name="mark_done">完成</string>
+    <string name="check_in">打卡</string>
+    <string name="undo_done">取消完成</string>
+    <string name="edit">编辑</string>
+    <string name="status_done">已完成</string>
+    <string name="status_disabled">已停用</string>
+    <string name="status_off_day">今天不用做</string>
+    <string name="status_overdue">已超时未完成</string>
+    <string name="status_urging">催促中</string>
+    <string name="status_past_deadline">已过截止</string>
+    <string name="status_waiting">等待中</string>
+
+    <!-- 编辑页 -->
+    <string name="edit_new">新建任务</string>
+    <string name="edit_title">编辑任务</string>
+    <string name="f_name">名称</string>
+    <string name="f_target">目标次数</string>
+    <string name="f_reps">每组次数</string>
+    <string name="f_reps_desc">填写后卡片可逐组打卡，做满自动完成；留空则一次勾选</string>
+    <string name="f_deadline">目标时间</string>
+    <string name="f_pre">开始时间</string>
+    <string name="f_post">截止时间</string>
+    <string name="f_repeat">重复时间段</string>
+    <string name="f_repeat_desc">结束留空 = 一直重复；开始 = 结束 = 只当天一次；开始与结束都可按公历或农历选</string>
+    <string name="f_priority">优先级</string>
+    <string name="f_items">清单（一条任务一张单子）</string>
+    <string name="f_items_hint">一行一项，可留空\n多组的写：名字|组数|每组次数\n例：\n哑铃卧推|4|8\n引体向上|4\n热身 5 分钟\n牛奶 ×2</string>
+    <string name="f_items_desc">写「名字|4|8」就是 4 组 × 8 次：打卡界面里点 + 记一组，满组自动完成；只写名字的（如热身）显示一个「完成」按钮。全部做完 = 任务完成，清单再长也只有一条提醒</string>
+    <string name="priority_high">高</string>
+    <string name="priority_mid">中</string>
+    <string name="priority_low">低</string>
+    <string name="f_preview">提醒时间</string>
+    <string name="chip_off">关闭</string>
+    <!-- 开始/复查滚轮的第 1 格：0 分钟提前量 = 与截止时间同时响 -->
+    <string name="offset_on_time">准时</string>
+    <!-- 带范围的钟点选择弹窗（v3.34.17）：说明这一栏能选的时间段 -->
+    <string name="clock_range_fmt">可选 %1$s – %2$s</string>
+    <string name="clock_range_empty">当前目标时间下没有可选项</string>
+    <string name="clock_off_switch">关闭此提醒</string>
+    <string name="chip_daily">每天</string>
+    <string name="chip_weekdays">工作日</string>
+    <string name="chip_rest_day">休息日</string>
+    <string name="chip_custom">自定义</string>
+    <string name="save">保存</string>
+    <string name="delete">删除任务</string>
+    <string name="preview_line_pre">开始（若已完成则不响）</string>
+    <string name="preview_line_deadline">目标时间</string>
+    <string name="preview_line_post">截止（若仍未完成则再响一次）</string>
+    <string name="preview_none">两个提醒都关闭了，此时不会有任何响铃</string>
+
+    <!-- 小米联动 -->
+    <string name="link_title">小米联动</string>
+    <string name="link_intro">同步到系统时钟与日历，本应用被清理也能响</string>
+    <string name="link_clock">同步到小米时钟</string>
+    <string name="link_clock_desc">在系统时钟建重复闹钟，作为兜底</string>
+    <string name="link_calendar">同步到系统日历</string>
+    <string name="link_calendar_desc">生成重复日程，可在小米日历查看</string>
+    <string name="link_open_clock">打开小米时钟</string>
+    <string name="link_open_calendar">打开小米日历</string>
+    <string name="link_note">「待办 / 笔记」未开放接口，不联动</string>
+    <string name="link_clock_no_date_suffix">（按日期重复的提醒小米时钟不支持，只同步到日历）</string>
+    <string name="link_clock_once_suffix">（仅一次的提醒小米时钟表达不了「某天一次」，请改用日历联动）</string>
+    <string name="link_calendar_past_suffix">（该任务日期已过，不会再响铃，无需日历联动）</string>
+    <string name="link_calendar_ended_suffix">（任务期间已结束，不会再响铃，无需日历联动）</string>
+    <string name="synced_fmt"> · 已同步%1$s</string>
+    <string name="link_no_clock_app">设备上没有可响应的时钟应用</string>
+    <string name="link_no_clock_app_suffix">（本机未检测到时钟应用）</string>
+    <string name="link_calendar_perm_needed">需要日历读写权限才能同步</string>
+    <string name="link_ok">已同步</string>
+    <string name="link_failed">同步失败，可尝试打开对应应用手动确认</string>
+
+    <string name="set_plus_fmt">记 1 组（%1$d 次）</string>
+    <string name="set_done_fmt">已完成 %1$d/%2$d 组</string>
+    <!-- 首页页签 -->
+    <string name="tab_today">今天</string>
+    <string name="tab_plan">计划</string>
+    <string name="tab_done">已完成</string>
+    <string name="tab_all">全部</string>
+    <string name="tab_history">历史</string>
+    <string name="all_hint">只列还没到期的任务；已完成 / 已过期的一次性任务在「历史」</string>
+    <string name="history_hint">已完成 / 已过期的一次性任务，按原定日期保留约一个月，超期不再显示</string>
+    <string name="holiday_hint_fmt">节假日数据未覆盖 %1$d 年，放假与调休的判断可能不准</string>
+    <string name="holiday_hint_close">关闭提示</string>
+    <string name="pattern_yearly">年</string>
+    <string name="month_days_label">几号</string>
+    <string name="year_month_label">月份</string>
+    <string name="history_empty_title">没有历史任务</string>
+    <string name="history_empty_desc">已完成或已过期的一次性任务会在这里留一个月</string>
+    <!-- 汉堡菜单 + 今日概览卡（v3.34.69） -->
+    <string name="btn_menu">菜单</string>
+    <string name="overview_fmt">今天 %1$d 项任务 · 已完成 %2$d · 还剩 %3$d</string>
+    <string name="overview_free">今天没有安排，好好休息</string>
+    <string name="status_expired">已过期</string>
+    <string name="cal_prev">上个月</string>
+    <string name="cal_next">下个月</string>
+    <string name="week_sun">日</string>
+    <string name="week_mon">一</string>
+    <string name="week_tue">二</string>
+    <string name="week_wed">三</string>
+    <string name="week_thu">四</string>
+    <string name="week_fri">五</string>
+    <string name="week_sat">六</string>
+    <string name="cal_day_empty">这天没有安排</string>
+    <string name="cal_pick_month">选择年月</string>
+    <string name="timeline_label">时间段</string>
+    <string name="timeline_range_fmt">%1$s – %2$s</string>
+    <string name="agenda_target_fmt">目标 %1$s</string>
+    <string name="agenda_pending">待完成</string>
+    <string name="either_switch">择一提醒（确认任一个时刻即算今天完成）</string>
+    <string name="slot_confirmed">已确认</string>
+    <string name="slot_pending">待确认</string>
+    <string name="set_caption_fmt">每组 %1$d 次</string>
+    <string name="agenda_date_fmt">%1$d 月 %2$d 日 · 星期%3$s</string>
+    <string name="cal_legend_partial">部分完成</string>
+    <string name="cal_legend_none">无完成记录</string>
+    <string name="timeline_flat_hint">任务都在同一时刻，时间图省略</string>
+    <string name="timeline_now">现在</string>
+    <string name="done_empty_title">今天还没完成任何任务</string>
+
+    <!-- 法定休息日时间 -->
+    <string name="f_rest_day_deadline">法定休息日时间</string>
+    <string name="f_rest_day_hint">按国务院放假安排判定，调休补班的周末仍算工作日</string>
+    <string name="rest_day_same">与上方相同</string>
+    <string name="preview_rest_day_prefix">法定休息日</string>
+    <string name="rest_day_clear">恢复为「与上方相同」</string>
+
+    <!-- 响铃方式 -->
+    <string name="ringmode_title">响铃方式</string>
+    <string name="ringmode_follow">跟随系统</string>
+    <string name="ringmode_both">声音+震动</string>
+    <string name="ringmode_vibrate">仅震动</string>
+    <string name="ringmode_sound">仅声音</string>
+    <string name="ringmode_note">「跟随系统」按手机铃声模式自动切换，静音下仍保证叫醒</string>
+    <string name="ringmode_fmt">当前：%1$s</string>
+    <string name="ringmode_state_follow">跟随系统</string>
+    <string name="ringmode_state_both">声音 + 震动</string>
+    <string name="ringmode_state_vibrate">仅震动</string>
+    <string name="ringmode_state_sound">仅声音</string>
+
+    <!-- 免打扰窗口（考试/会议时段，v3.34.16） -->
+    <string name="quiet_title">免打扰窗口</string>
+    <string name="quiet_desc">考试、开会等不想被提醒打扰的时段。落在窗口内的提醒会推迟到窗口结束时刻：如 08:30–12:30 的窗口，原本 8:50 要响的提醒改到 12:30 响。</string>
+    <string name="quiet_note">改动保存后会自动重排闹钟；窗口当天的提醒整体后移，不会提前响。</string>
+    <string name="quiet_state_none">未设置。所有提醒都按原定时间响</string>
+    <string name="quiet_state_fmt">已设 %1$d 个窗口 · 最近 %2$s</string>
+    <string name="quiet_manage">管理免打扰窗口</string>
+    <string name="quiet_add">＋ 添加窗口</string>
+    <string name="quiet_empty">还没有免打扰窗口</string>
+    <string name="quiet_delete">删除这个窗口</string>
+    <string name="quiet_pick_date">窗口日期</string>
+    <string name="quiet_pick_start">开始时间</string>
+    <string name="quiet_pick_end">结束时间</string>
+    <string name="quiet_err_order">结束时间需要晚于开始时间</string>
+
+    <!-- 响铃页 -->
+    <string name="ring_done_btn">完成</string>
+    <string name="ring_know">我知道了</string>
+    <string name="ring_not_yet">还没做完，稍后再提醒</string>
+    <string name="ring_others_title">未完成 · %1$d 项</string>
+    <string name="ring_all_done_title">都做完了</string>
+    <string name="ring_all_done_desc">今天没有待办了</string>
+    <!-- 打卡页：多时刻任务的逐时刻确认区（v3.34.21） -->
+    <string name="ring_times_todo_fmt">还有 %1$d 个时刻没确认</string>
+    <string name="ring_times_header">各个时刻（点一下确认这一次的）</string>
+    <!-- 编辑页：逐时刻的开始 / 复查（v3.34.21） -->
+    <string name="f_time_offsets">逐时刻提醒（默认沿用上面的设置）</string>
+    <string name="btn_apply_all_offsets">全部时刻用同一组时间</string>
+
+    <!-- 锁屏 / 后台响铃 -->
+    <string name="ring_title">锁屏响铃</string>
+    <string name="ring_note">到点由系统直接唤醒，划掉最近任务也响；锁屏全屏弹出。\n\n小米 HyperOS 需放行：自启动、后台弹出界面、锁定后台、电池优化无限制。\n\n最保险：关键任务打开「同步到小米时钟」。</string>
+    <string name="btn_app_settings">打开系统设置</string>
+    <string name="next_alarm_fmt">下一次：%1$s · %2$s</string>
+    <string name="next_alarm_none">当前没有已排定的提醒</string>
+
+    <!-- 首页文案 -->
+    <string name="app_title">TIME</string>
+    <string name="empty_title">还没有任务</string>
+    <string name="empty_subtitle">点「新建任务」开始</string>
+    <string name="btn_new">新建任务</string>
+    <string name="btn_edit_task">编辑任务</string>
+
+    <!-- 卡片进度 -->
+    <string name="set_minus_sign">−</string>
+    <string name="set_plus_sign">+</string>
+    <string name="set_minus_desc">退一组</string>
+    <string name="set_plus_desc">记一组</string>
+    <string name="progress_sets_fmt">第 %1$d/%2$d 组 · %3$d%%</string>
+    <string name="progress_count_fmt">%1$d/%2$d · %3$d%%</string>
+
+    <!-- 按日期重复（房租 / 账单类） -->
+    <string name="mode_weekday">周</string>
+    <string name="mode_date">按日期</string>
+    <string name="anchor_solar">公历</string>
+    <string name="anchor_lunar">农历</string>
+    <!--
+      统一重复时间段（v3.35）：一个入口覆盖永久 / 仅一次 / 自定义 / 农历 ——
+      开始时间 + 结束时间（可设长期）+ 各自选公历或农历 + 重复规则 + 一天内多个时刻。
+    -->
+    <string name="pattern_every_n_days">日</string>
+    <string name="pattern_monthly">月</string>
+    <string name="pattern_use_start_day">按开始日期</string>
+    <string name="f_daily_times">目标时间</string>
+    <string name="time_mode_fixed">固定</string>
+    <string name="time_mode_interval">间隔</string>
+    <string name="time_fixed_hint">点「＋」新增时刻；点已有时刻删除。多个时刻各响一次，催促/复查对每个时刻统一生效</string>
+    <string name="time_add">＋ 添加</string>
+    <string name="f_start_date">开始日期</string>
+    <string name="iv_end_fmt">至 %1$s</string>
+    <string name="f_end">结束日期</string>
+    <string name="date_unset">选择日期</string>
+    <string name="date_never">长期</string>
+    <string name="err_end_before_start">结束日期不能早于开始日期</string>
+    <string name="day_pick_never">设为长期</string>
+    <string name="day_pick_lunar_today_fmt">今年公历 %1$s</string>
+    <string name="day_pick_lunar_convert_fmt">公历 %1$s</string>
+    <string name="day_pick_lunar_invalid">该农历月没有这一天</string>
+    <string name="f_interval">间隔</string>
+    <string name="action_clear">清除</string>
+    <string name="interval_sheet_title">选择间隔</string>
+    <string name="interval_months_fmt">每 %1$d 个月</string>
+    <string name="interval_days_fmt">每 %1$d 天</string>
+    <string name="interval_years_fmt">每 %1$d 年</string>
+    <string name="holiday_hint_date">按日期重复不受节假日影响，到账期当天照常提醒</string>
+
+    <!-- 节假日 / 调休 -->
+    <string name="group_collapse">折叠 / 展开</string>
+    <string name="group_untagged">未分组</string>
+    <string name="group_count_fmt">%1$d 条</string>
+    <string name="tag_title">标签</string>
+    <string name="tag_sports">运动</string>
+    <string name="tag_diet">饮食</string>
+    <string name="tag_work">工作</string>
+    <string name="tag_study">学习</string>
+    <string name="tag_custom_add">＋ 自定义</string>
+    <string name="tag_custom_title">自定义标签</string>
+    <string name="tag_custom_hint">标签名</string>
+    <string name="tag_rename">重命名</string>
+    <string name="tag_delete">删除标签</string>
+    <string name="tag_rename_short">改</string>
+    <string name="tag_delete_short">删</string>
+    <string name="tag_deleted_msg">已删除，相关任务回到未分组</string>
+    <string name="tag_manage_hint">点标签选中；行尾「改 / 删」可重命名 / 删除</string>
+    <string name="chip_more">更多</string>
+    <string name="pre_sheet_title">开始时间</string>
+    <string name="post_sheet_title">截止时间</string>
+    <string name="widget_title">今天待办</string>
+    <string name="widget_desc">迷你时间轴：今天的任务时刻与当前时间线，可一键打卡</string>
+    <string name="widget_today_label">今天</string>
+    <string name="widget_remaining_fmt">%2$s · 还剩 %1$d 件</string>
+    <string name="widget_done_fmt">完成 · %1$s</string>
+    <string name="widget_header_fmt">今天 · %1$d 个待办</string>
+    <string name="widget_empty">今天没有待办，好好休息</string>
+    <string name="widget_empty_done">今日事毕</string>
+    <string name="widget_done">完成</string>
+    <string name="f_skip_holidays">节假日跳过</string>
+    <string name="holiday_hint_workday">按法定工作日提醒：调休补班的周末照常，放假的周一至周五不提醒</string>
+    <string name="holiday_hint_weekend">按法定休息日提醒：周末与法定假日</string>
+    <string name="holiday_hint_other">开启后，周末与法定节假日不再提醒；调休补班日仍照常提醒</string>
+    <string name="settings_diag_title">节假日与联动</string>
+    <string name="diag_holiday_today_fmt">今天：%1$s</string>
+    <string name="diag_holiday_covered_fmt">节假日数据：已覆盖 %1$s 年</string>
+    <string name="diag_holiday_uncovered">节假日数据：当前年份未内置，暂按周一至周五处理</string>
+    <string name="diag_clock_ok_fmt">时钟联动：已识别到 %1$s</string>
+    <string name="diag_clock_bad">时钟联动：未识别到时钟应用</string>
+    <string name="diag_cal_fmt">日历联动：已写入 %1$d 条日程</string>
+    <string name="diag_cal_empty">日历联动：日历已建但还没有日程，保存任务并勾选同步后写入</string>
+    <string name="diag_cal_no_perm">日历联动：未授权日历权限</string>
+    <string name="diag_cal_broken">日历联动：日历不可用，创建或写入失败</string>
+
+    <!-- 外观 -->
+    <string name="theme_title">外观</string>
+    <string name="theme_system">跟随系统</string>
+    <string name="theme_light">浅色</string>
+    <string name="theme_dark">深色</string>
+    <string name="accent_title">主题色</string>
+    <string name="accent_wallpaper">壁纸</string>
+    <string name="accent_celadon">青瓷</string>
+    <string name="accent_apricot">暖杏</string>
+    <string name="accent_mistblue">雾蓝</string>
+    <string name="accent_violet">暮紫</string>
+    <string name="accent_coral">绯桃</string>
+
+    <!-- 统计页 -->
+    <string name="stats_title">统计</string>
+    <string name="stats_done_today">今日完成</string>
+    <string name="stats_streak_unit">天</string>
+    <string name="stats_rate_unit">30天</string>
+    <string name="stats_current_streak">当前连续</string>
+    <string name="stats_longest">最长纪录</string>
+    <string name="stats_rate_30">30天完成率</string>
+    <string name="stats_trend_label">近 30 天</string>
+    <string name="stats_empty_title">还没有数据</string>
+    <string name="stats_empty_desc">先去创建任务并完成一次</string>
+
+    <!-- 响铃页 -->
+    <string name="ring_tag_pre">该做任务了</string>
+    <string name="ring_tag_post">任务仍未完成</string>
+    <string name="ring_done">已完成</string>
+    <string name="ring_set_plus">记 1 组</string>
+    <string name="back_one_set">退一组</string>
+    <string name="ring_silenced">已静音，做完再关</string>
+    <string name="ring_snooze">稍后提醒 5 分钟</string>
+
+    <!-- 环境自检 -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_intro">绿灯正常，红灯点一下去开启</string>
+    <string name="perm_exact_title">精确闹钟权限（闹钟和提醒）</string>
+    <string name="perm_exact_ok">已开启。提醒会在准确时间触发，可穿透省电模式</string>
+    <string name="perm_exact_bad">未开启。提醒时间可能偏差几分钟。安卓 12 以上必须手动开启</string>
+    <string name="perm_notif_title">通知权限</string>
+    <string name="perm_notif_ok">已开启。响铃时会弹出通知和全屏提醒</string>
+    <string name="perm_notif_bad">未开启。响铃时可能看不到任何提示</string>
+    <string name="perm_channel_title">响铃通知渠道</string>
+    <string name="perm_channel_ok">正常。声音走「闹钟音量」通道，静音模式也能响</string>
+    <string name="perm_channel_bad">被关闭或降级了。请在通知设置里把「Takt 响铃」恢复为「紧急」</string>
+    <string name="perm_fullscreen_title">锁屏全屏提醒</string>
+    <string name="perm_fullscreen_ok">已允许。锁屏时能直接弹出响铃页</string>
+    <string name="perm_fullscreen_bad">未允许。锁屏时只能收到普通通知（安卓 14 以上需单独授予）</string>
+    <string name="perm_battery_title">后台运行（电池优化白名单）</string>
+    <string name="perm_battery_ok">已加入白名单。系统不会限制本应用后台唤醒</string>
+    <string name="perm_battery_bad_fmt">未加入。%1$s 可能杀掉后台导致闹钟不响</string>
+    <string name="action_go">去开启</string>
+    <string name="action_check">去检查</string>
+    <string name="action_settings">去设置</string>
+    <string name="perm_manage">管理</string>
+    <string name="btn_test_ring_full">测试响铃（立即响一次）</string>
+    <string name="btn_reschedule">重新排定所有提醒</string>
+
+    <string name="notif_channel_name">Takt 响铃</string>
+    <string name="notif_channel_desc">到点未完成任务时响铃，声音为闹钟音量</string>
+
+    <!-- 导入任务 -->
+    <string name="edit_back_desc">返回</string>
+    <string name="btn_import">导入</string>
+    <string name="import_title">Import</string>
+    <string name="import_subtitle">把 AI 生成的训练计划一键灌进来</string>
+    <string name="import_src_file">从文件导入</string>
+    <string name="import_src_file_desc">选手机上的 JSON / 文本文件</string>
+    <string name="import_pick_file">选择方案文件</string>
+    <string name="import_src_paste">粘贴 AI 生成的内容</string>
+    <string name="import_src_paste_desc">AI 生成后复制过来即可</string>
+    <string name="import_paste_hint">粘贴 JSON</string>
+    <string name="import_parse">解析</string>
+    <string name="import_show_format">查看 JSON 格式说明</string>
+    <string name="import_help_msg">只输出 JSON，不要解释文字。结构：{"version":7,"tasks":[{…},{…}]}，最多 50 条；不带 "id"=新增，带 "id"=改，{"id":12,"delete":true}=删。\n\n字段（不写取默认值）：\nname 名称，必填\ndeadline "HH:MM" 目标时刻；times 可写数组 ["08:00","12:30"] 或 {"start":"09:00","intervalMin":120,"end":"21:00"} 间隔循环；二选一，默认 20:00\nurgeBefore 目标前几分钟提醒：0=准时，-1=关，默认 30\nrecheckAfter 目标后几分钟复查：0=准时，-1=关，默认 120\nrepeat "once"=一次性（配 date）；"daily"=每天；"weekdays"=工作日；["sat","sun"]=逢星期几；"monthly"=每月；{"type":"date","date":"2026-10-26","intervalMonths":3}=账期\ndate "YYYY-MM-DD" 一次性任务的执行日\nstartDate / endDate 生效起止，endDate 留空=永久\nrestDayDeadline "HH:MM" 休息日目标时刻，默认同 deadline\nskipHolidays true=跳过法定节假日\nitems ["牛奶 2L"] 清单；targetCount 目标次数\ntimeOffsets [{"time":"09:00","urgeBefore":30,"recheckAfter":0}] 只改某个时刻的提醒，-1=关\ntag 分组；priority "高"/"中"/"低"\nlinkClock true=同步系统闹钟；linkCalendar true=写日历（带闹钟提醒）\n\n注意：两个提醒都填 -1 的任务不会响；时刻用 24 小时制，日期写全年。</string>
+
+    <string name="import_copy_template">复制模板</string>
+    <string name="import_copied">已复制到剪贴板</string>
+    <string name="import_close">关闭</string>
+    <string name="import_summary_fmt">共解析出 %1$d 条，选中 %2$d 条</string>
+    <string name="import_summary_mixed_fmt">共 %1$d 项 · 选中 %5$d 项（新增 %2$d / 修改 %3$d / 删除 %4$d）</string>
+    <string name="import_op_add">新增</string>
+    <string name="import_op_edit">修改</string>
+    <string name="import_op_delete">删除</string>
+    <string name="import_edit_was_fmt">原任务：%1$s</string>
+    <string name="import_confirm_n">导入选中的 %1$d 条</string>
+    <string name="import_confirm">确认导入</string>
+    <string name="import_read_failed">读取失败，可改用下方「粘贴」方式</string>
+    <string name="import_no_picker">无法打开文件选择器</string>
+    <string name="import_empty">没有解析到任务</string>
+    <string name="import_none_selected">没有选中任何任务</string>
+    <string name="import_done_fmt">已导入 %1$d 条任务</string>
+    <string name="import_paste_clip">从剪贴板粘贴</string>
+    <string name="import_clip_empty">剪贴板没有内容</string>
+    <string name="adb_import_channel">外部导入</string>
+    <string name="adb_import_title">收到待导入的任务计划</string>
+    <string name="adb_import_body">点按查看预览并确认导入</string>
+    <string name="pc_notify_channel">PC 通知</string>
+
+    <!-- 设置页：外部控制（局域网 HTTP） -->
+    <string name="control_title">外部控制（局域网）</string>
+    <string name="control_desc">电脑上的 AI / 脚本经 Wi-Fi 读改任务；新增 / 修改 / 删除都需手机确认</string>
+    <string name="control_on">已开启</string>
+    <string name="control_off">已关闭</string>
+    <string name="control_url_hint">连上 Wi-Fi / 热点后显示地址</string>
+    <string name="control_copy">复制对接信息</string>
+    <string name="control_copied">已复制，电脑端按此连接</string>
+    <string name="control_no_network">未检测到局域网地址</string>
+    <string name="control_notif_channel">外部控制服务</string>
+    <string name="control_notif_title">外部控制运行中</string>
+
+    <!-- 日期 / 时间选择弹窗（TimeSheet / DateSheet） -->
+    <string name="sheet_pick_date">选择日期</string>
+    <string name="sheet_action_cancel">取消</string>
+    <string name="sheet_action_ok">确定</string>
+
+    <!-- 导出（与导入一对） -->
+    <string name="import_export">导出全部任务</string>
+    <string name="import_export_desc">导出 JSON，可分享 / 换机还原</string>
+    <string name="export_empty">还没有任务可导出</string>
+    <string name="export_share_title">分享任务计划 JSON</string>
+    <string name="export_share_failed">分享失败，可检查是否禁用了本应用的分享权限</string>
+    <string name="export_done">已生成 %1$d 条任务的 JSON，选择分享方式</string>
+    <string name="format_sheet_title">JSON 格式说明</string>
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 列表入场编排：逐行错拍 12%（首屏打开时行依次浮起，借鉴开源时钟列表的 stagger 入场） -->
+<layoutAnimation xmlns:android="http://schemas.android.com/apk/res/android"
+    android:animation="@anim/ta_item_enter"
+    android:animationOrder="normal"
+    android:delay="12%" />

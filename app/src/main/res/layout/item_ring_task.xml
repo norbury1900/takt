@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  响铃页里的「未完成清单」条目 —— 平铺一行，不做卡片。
+  行内：状态圆点 + 任务名 + 进度（组数 / 清单）+ 时刻竖排列表 + 进入箭头 + 圆形勾（一键完成）。
+  点名字那一列进入该任务的「任务界面」（RingTaskActivity）再慢慢打卡。
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
+
+    <View
+        android:id="@+id/dotState"
+        android:layout_width="6dp"
+        android:layout_height="6dp"
+        android:layout_marginEnd="10dp" />
+
+    <LinearLayout
+        android:id="@+id/rowRingMain"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="?android:attr/selectableItemBackground"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvItemName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/zhuque_fangsong"
+            android:maxLines="1"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tvItemMeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:textSize="12sp" />
+
+        <!--
+          多时刻任务的时刻列表：竖排一行一个（✓/○ + 时刻），已确认的打勾划掉。
+          只做轻微缩进跟任务名分层，不加底、不加框（用户 2026-10-26：卡片太丑）。
+        -->
+        <LinearLayout
+            android:id="@+id/boxTimes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="3dp"
+            android:orientation="vertical"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <!-- 指向右侧的箭头：表示「点进去」 -->
+    <ImageView
+        android:id="@+id/ivRingChevron"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="6dp"
+        android:contentDescription="@string/edit_back_desc"
+        android:src="@drawable/ic_expand_more"
+        app:tint="?attr/colorOnSurfaceVariant" />
+
+    <!--
+      用 ImageButton 而不是 MaterialButton：后者的 iconGravity 在新版 Material 里
+      已没有 textOnly 这个值，纯图标很难真正居中。ImageButton 的 src 天然居中。
+    -->
+    <ImageButton
+        android:id="@+id/btnItemDone"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="6dp"
+        android:background="@drawable/bg_sq_button"
+        android:contentDescription="@string/ring_done"
+        android:padding="10dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_check"
+        app:tint="@color/accent" />
+</LinearLayout>

@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  统计页。顶卡只讲一件事：今天怎么样（大数字 + 进度条 + 一句人话），
+  其余三个指标（连续 / 近30天完成 / 本周完成）缩成安静的等宽小格 ——
+  之前把「今日 1/5」「本周 1/30」「20% 近30天」「近30天完成 1/5 天」全平铺，
+  两个 1/5 含义不同却并排摆着，看着像重复又看不出重点。
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_window">
+
+    <!-- 顶栏 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="8dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp">
+
+        <!-- v3.34.80：返回箭头换尖括号（与日历翻月同款 chevron） -->
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_chevron_left"
+            android:contentDescription="返回"
+            app:tint="?attr/colorOnSurface" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stats"
+            android:textAppearance="@style/Text.TaskAlarm.Headline"
+            android:textColor="?attr/colorOnSurface" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="32dp">
+
+            <!-- 概览卡（v3.34.73 改与首页同款红色渐变卡，字体/进度条换红底配色） -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/bg_overview"
+                android:orientation="vertical"
+                android:paddingStart="22dp"
+                android:paddingEnd="22dp"
+                android:paddingTop="28dp"
+                android:paddingBottom="28dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- 今天：左标签右数字，一条线读过去 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="bottom">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginBottom="6dp"
+                            android:text="今天完成"
+                            android:textSize="13sp"
+                            android:textColor="@color/overview_sub" />
+
+                        <TextView
+                            android:id="@+id/tvDoneToday"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="34sp"
+                            android:textStyle="bold"
+                            android:includeFontPadding="false"
+                            android:textColor="@color/accent_on" />
+
+                        <TextView
+                            android:id="@+id/tvTotalToday"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="/ 0"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginBottom="4dp"
+                            android:textSize="15sp"
+                            android:textColor="@color/accent_on" />
+                    </LinearLayout>
+
+                    <!-- 进度条（v3.34.83）：纯两段 View，权重由 StatsActivity 按比例设，
+                         不再用 LinearProgressIndicator（圆角端点会与轨道叠出穿模） -->
+                    <LinearLayout
+                        android:id="@+id/progressRate"
+                        android:layout_width="match_parent"
+                        android:layout_height="6dp"
+                        android:layout_marginTop="14dp"
+                        android:background="@drawable/bg_bar"
+                        android:backgroundTint="@color/overview_track"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:id="@+id/progressRateFill"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0"
+                            android:background="@drawable/bg_bar"
+                            android:backgroundTint="@color/accent_on" />
+
+                        <View
+                            android:id="@+id/progressRateSpacer"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+                    <!-- 一句人话：还差几件 / 今天清完了 -->
+                    <TextView
+                        android:id="@+id/tvTodayNote"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textSize="12sp"
+                        android:textColor="@color/overview_sub" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="14dp"
+                        android:background="@color/overview_track" />
+
+                    <!-- 三个安静指标：标签在上、数值在下，等宽居中 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="连续"
+                                android:textSize="11sp"
+                                android:textColor="@color/overview_sub" />
+
+                            <TextView
+                                android:id="@+id/tvStreak"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:includeFontPadding="false"
+                                android:text="0 天"
+                                android:textSize="19sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/accent_on" />
+                        </LinearLayout>
+
+                        <!-- 指标间分隔线（v3.34.79，参考稿 .summary-grid 的 border-right） -->
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="34dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@color/overview_track" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="近30天完成"
+                                android:textSize="11sp"
+                                android:textColor="@color/overview_sub" />
+
+                            <TextView
+                                android:id="@+id/tvRate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:includeFontPadding="false"
+                                android:text="0%"
+                                android:textSize="19sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/accent_on" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="34dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@color/overview_track" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="本周完成"
+                                android:textSize="11sp"
+                                android:textColor="@color/overview_sub" />
+
+                            <TextView
+                                android:id="@+id/tvWeekDone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:includeFontPadding="false"
+                                android:text="0 件"
+                                android:textSize="19sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/accent_on" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- 只在真有「还没到可统计阶段」的任务时才出现，平时不占地方 -->
+                    <TextView
+                        android:id="@+id/tvTaskCount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:textSize="11sp"
+                        android:textColor="@color/overview_sub"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- 热力图（v3.34.72，GitHub 风格）：近 26 周每天的完成度，红色深浅；
+                 v3.34.76 背板按用户要求改纯白（标签/空格色同步换白底可读的灰） -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="0dp"
+                app:cardBackgroundColor="#FFFFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="近 26 周"
+                        android:textSize="12.5sp"
+                        android:textColor="#FF6B6B6B" />
+
+                    <com.norbury.taskalarm.util.HeatmapView
+                        android:id="@+id/heatmap"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!--
+              用普通 LinearLayout 逐行 addView，不用 RecyclerView：
+              RecyclerView 套在 ScrollView 里、数据又是异步到的，测量过的行数不会随数据补上，
+              实测表现为「只显示前 3 个任务」。这里一次性把所有行建出来，永远不会漏。
+            -->
+            <LinearLayout
+                android:id="@+id/listStats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+            <LinearLayout
+                android:id="@+id/emptyStats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="40dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/ic_stats"
+                    android:alpha="0.3"
+                    app:tint="?attr/colorOnSurface" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="还没有数据"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="14dp"
+                    android:textColor="?attr/colorOnSurface" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="先去创建任务并完成一次"
+                    android:textSize="12.5sp"
+                    android:layout_marginTop="6dp"
+                    android:textColor="?attr/colorOnSurfaceVariant" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 时间轴圆点 · 到点没做（超时未完成）：深陶土实心（比 todo 更重，一眼可见） -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <size
+        android:width="9dp"
+        android:height="9dp" />
+    <solid android:color="@color/widget_pill_text" />
+</shape>

@@ -1,0 +1,1066 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_window"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="36dp">
+
+        <!-- 顶栏 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="8dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                android:contentDescription="返回"
+                android:src="@drawable/ic_chevron_left"
+                app:tint="?attr/colorOnSurface" />
+
+            <TextView
+                android:id="@+id/tvTitleBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edit_new"
+                android:textAppearance="@style/Text.TaskAlarm.Headline"
+                android:textColor="?attr/colorOnSurface" />
+        </LinearLayout>
+
+        <!-- 基本信息 -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="14dp"
+            app:cardBackgroundColor="@color/app_card"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    style="@style/FieldLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/f_name" />
+
+                <EditText
+                    android:id="@+id/etName"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_input"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:textAppearance="@style/Text.TaskAlarm.Body"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textColorHint="?attr/colorOnSurfaceVariant" />
+
+                <TextView
+                    style="@style/FieldLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:text="@string/f_target" />
+
+                <EditText
+                    android:id="@+id/etTarget"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_input"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:textAppearance="@style/Text.TaskAlarm.Body"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textColorHint="?attr/colorOnSurfaceVariant" />
+
+                <TextView
+                    style="@style/FieldLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:text="@string/f_reps" />
+
+                <EditText
+                    android:id="@+id/etReps"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_input"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:textAppearance="@style/Text.TaskAlarm.Body"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textColorHint="?attr/colorOnSurfaceVariant" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:lineSpacingMultiplier="1.45"
+                    android:text="@string/f_reps_desc"
+                    android:textSize="11.5sp"
+                    android:textColor="?attr/colorOnSurfaceVariant" />
+
+                <TextView
+                    style="@style/FieldLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:text="@string/tag_title" />
+
+                <!--
+                  标签下拉：按钮只显示当前标签，点开 TagSheet 底部抽屉选择
+                  （长按列表项 = 重命名 / 删除，＋ 自定义也在抽屉里），TaskEditActivity 接线。
+                -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnTagPick"
+                    style="@style/Widget.TaskAlarm.Button.Outlined"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/group_untagged"
+                    android:textAppearance="@style/Text.TaskAlarm.Title"
+                    app:cornerRadius="10dp"
+                    app:icon="@drawable/ic_expand_more"
+                    app:iconGravity="textEnd" />
+
+                <TextView
+                    style="@style/FieldLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:text="@string/f_priority" />
+
+                <!-- 优先级三档：列表一律「先按优先级、同档再按时间」排 -->
+                <LinearLayout
+                    style="@style/ChipRow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/chipPriorityHigh"
+                        style="@style/Chip"
+                        android:text="@string/priority_high" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/chipPriorityMid"
+                        style="@style/Chip"
+                        android:text="@string/priority_mid" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/chipPriorityLow"
+                        style="@style/Chip"
+                        android:text="@string/priority_low" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/FieldLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:text="@string/f_items" />
+
+                <!-- 清单：一行一项。一条任务一张单子，提醒仍只有一条 -->
+                <EditText
+                    android:id="@+id/etItems"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_input"
+                    android:gravity="top|start"
+                    android:hint="@string/f_items_hint"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:minLines="3"
+                    android:paddingStart="16dp"
+                    android:paddingTop="12dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="12dp"
+                    android:textAppearance="@style/Text.TaskAlarm.Body"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textColorHint="?attr/colorOnSurfaceVariant" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:lineSpacingMultiplier="1.45"
+                    android:text="@string/f_items_desc"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:textSize="11.5sp" />
+
+                <!--
+                  截止时间：旧单时刻任务的入口。统一「每天时刻」模型启用后整块隐藏
+                  （时刻表接管，deadlineMin 自动取首个时刻）。
+                -->
+                <LinearLayout
+                    android:id="@+id/boxDeadline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/FieldLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:text="@string/f_deadline" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnDeadline"
+                        style="@style/Widget.TaskAlarm.Button.Outlined"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:text="20:00"
+                        android:textAppearance="@style/Text.TaskAlarm.Headline"
+                        app:cornerRadius="10dp"
+                        app:icon="@drawable/ic_clock"
+                        app:iconGravity="start"
+                        app:iconPadding="10dp"
+                        app:strokeWidth="1.5dp" />
+                </LinearLayout>
+
+                <!-- 法定休息日时间：只有「工作日」以外的任务用得着（工作日提醒根本不会落在休息日） -->
+                <LinearLayout
+                    android:id="@+id/boxRestDay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/FieldLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/f_rest_day_deadline" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnRestDayDeadline"
+                        style="@style/Widget.TaskAlarm.Button.Outlined"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/rest_day_same"
+                        android:textSize="15sp"
+                        app:cornerRadius="10dp"
+                        app:icon="@drawable/ic_calendar"
+                        app:iconGravity="start"
+                        app:iconPadding="10dp"
+                        app:strokeWidth="1dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:lineSpacingMultiplier="1.5"
+                        android:text="@string/f_rest_day_hint"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textSize="11.5sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!--
+          每天时刻：点「＋ 添加」自定多个时刻，想加几个加几个（新任务不预填任何时刻）；
+          或切「间隔循环」从开始时刻每隔 N 分钟响到结束时刻。
+          位置：放在「提醒时机」（开始时间 / 复查时间）上方 —— 用户 2026-10-20 要求上移，
+          阅读顺序 = 什么时候响 → 提前/延后多少 → 哪天重复。
+        -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardTimes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="14dp"
+            app:cardBackgroundColor="@color/app_card"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    style="@style/FieldLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/f_daily_times" />
+
+                <!-- 时刻模式：固定多个时刻 / 间隔循环 -->
+                <LinearLayout
+                    style="@style/ChipRow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnTimeFixed"
+                        style="@style/Chip"
+                        android:text="@string/time_mode_fixed" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnTimeInterval"
+                        style="@style/Chip"
+                        android:text="@string/time_mode_interval" />
+                </LinearLayout>
+
+                <!-- 固定时刻：动态时刻芯片（点芯片删除）+ 「＋ 添加」 -->
+                <LinearLayout
+                    android:id="@+id/rowFixedTimes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="none">
+
+                        <!-- v3.34.89：芯片整体居中（内容比视口窄时居中，超宽时照常横滑） -->
+                        <LinearLayout
+                            android:id="@+id/llTimeChips"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:orientation="horizontal" />
+                    </HorizontalScrollView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:lineSpacingMultiplier="1.45"
+                        android:text="@string/time_fixed_hint"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textSize="11.5sp" />
+                </LinearLayout>
+
+                <!-- 择一提醒（v3.34.96）：多时刻任务确认任一个即算今天完成（晚饭 17:10 外卖 / 18:00 做饭） -->
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/swEither"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/either_switch"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="12.5sp"
+                    android:visibility="gone" />
+
+                <!-- 间隔循环：开始时刻 → 每隔（滚轮 1 分钟~24 小时）→ 响到 -->
+                <LinearLayout
+                    android:id="@+id/rowInterval"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <!-- v3.34.89：三个参数 chip 收进弹窗，这里只留一颗摘要钮 -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnIvConfig"
+                        style="@style/Chip"
+                        android:text="08:00 · 每 60 分 · 至 22:00" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 提醒时机 -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="14dp"
+            app:cardBackgroundColor="@color/app_card"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    style="@style/FieldLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/f_pre" />
+
+                <!-- 开始时间：字段本身点一下就开滚轮（右边的「选择」按钮已按用户要求移除） -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnPreOffset"
+                        style="@style/Widget.TaskAlarm.Button.Outlined"
+                        android:layout_width="0dp"
+                        android:layout_height="52dp"
+                        android:layout_weight="1"
+                        android:gravity="start|center_vertical"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:paddingStart="16dp"
+                        android:text="@string/chip_off"
+                        android:textAppearance="@style/Text.TaskAlarm.Title"
+                        app:cornerRadius="10dp" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/FieldLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:text="@string/f_post" />
+
+                <!-- 复查时机：同开始时间，字段点一下开滚轮 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnPostOffset"
+                        style="@style/Widget.TaskAlarm.Button.Outlined"
+                        android:layout_width="0dp"
+                        android:layout_height="52dp"
+                        android:layout_weight="1"
+                        android:gravity="start|center_vertical"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:paddingStart="16dp"
+                        android:text="@string/chip_off"
+                        android:textAppearance="@style/Text.TaskAlarm.Title"
+                        app:cornerRadius="10dp" />
+                </LinearLayout>
+
+                <!--
+                  逐时刻的开始 / 复查（v3.34.21）：
+                  多时刻任务里每个时刻各有自己的提醒时机，动态填充（llTimeOffsetRows）。
+                  上面那两个「开始时间 / 复查时间」按钮在多时刻时是默认值，
+                  这里可以给单个时刻改不一样的钟点；底部「应用到全部时刻」一键回齐。
+                -->
+                <LinearLayout
+                    android:id="@+id/rowTimeOffsets"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/FieldLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/f_time_offsets" />
+
+                    <LinearLayout
+                        android:id="@+id/llTimeOffsetRows"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnApplyAllOffsets"
+                        style="@style/Widget.TaskAlarm.Button.Outlined"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="8dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:text="@string/btn_apply_all_offsets"
+                        android:textAppearance="@style/Text.TaskAlarm.Title"
+                        app:cornerRadius="10dp" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/FieldLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/f_preview" />
+
+                <TextView
+                    android:id="@+id/tvPreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_note"
+                    android:lineSpacingMultiplier="1.7"
+                    android:padding="16dp"
+                    android:textAppearance="@style/Text.TaskAlarm.Meta"
+                    android:textColor="?attr/colorOnSecondaryContainer" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 重复：统一「重复时间段」入口（v3.35）—— 开始 + 结束 + 公历/农历 + 重复规则 -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="14dp"
+            app:cardBackgroundColor="@color/app_card"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    style="@style/FieldLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/f_repeat" />
+
+                <!--
+                  统一「重复时间段」入口（v3.35）：开始 + 结束 + 历法 + 重复规则，
+                  覆盖永久 / 仅一次 / 自定义 / 农历，不再单独设按钮。
+                -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:lineSpacingMultiplier="1.45"
+                    android:text="@string/f_repeat_desc"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:textSize="11.5sp" />
+
+                <!-- 开始日期：公历月历或农历月日联动滚轮各自可选；与结束同天即「仅一次」 -->
+                <TextView
+                    style="@style/FieldLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="@string/f_start_date" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnStartDate"
+                    style="@style/Widget.TaskAlarm.Button.Outlined"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/date_unset"
+                    android:textAppearance="@style/Text.TaskAlarm.Title"
+                    app:cornerRadius="10dp"
+                    app:icon="@drawable/ic_calendar"
+                    app:iconGravity="textStart"
+                    app:iconPadding="8dp" />
+
+                <!-- 结束日期：留空 = 长期（永久）；可按公历或农历选 -->
+                <TextView
+                    style="@style/FieldLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="@string/f_end" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnEndDate"
+                        style="@style/Widget.TaskAlarm.Button.Outlined"
+                        android:layout_width="0dp"
+                        android:layout_height="52dp"
+                        android:layout_weight="1"
+                        android:text="@string/date_never"
+                        android:textAppearance="@style/Text.TaskAlarm.Title"
+                        app:cornerRadius="10dp"
+                        app:icon="@drawable/ic_calendar"
+                        app:iconGravity="textStart"
+                        app:iconPadding="8dp" />
+
+                    <Button
+                        android:id="@+id/btnEndDateClear"
+                        style="@style/Widget.TaskAlarm.Button.Text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="6dp"
+                        android:text="@string/action_clear"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <!--
+                  期间内方式（统一模型第二段）：按星期几 / 每 N 天 / 每月 N 号。
+                  农历任务没有方式（按年循环，间隔用「每 N 年」）。
+                -->
+                <LinearLayout
+                    android:id="@+id/rowPattern"
+                    style="@style/ChipRow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnPatEveryN"
+                        style="@style/Chip"
+                        android:text="@string/pattern_every_n_days" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnPatWeekday"
+                        style="@style/Chip"
+                        android:text="@string/mode_weekday" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnPatMonthly"
+                        style="@style/Chip"
+                        android:text="@string/pattern_monthly" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnPatYearly"
+                        style="@style/Chip"
+                        android:text="@string/pattern_yearly" />
+                </LinearLayout>
+
+                <!-- 月：1-31 多选，7 列多行 -->
+                <GridLayout
+                    android:id="@+id/gridMonthDayChips"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:columnCount="7"
+                    android:visibility="gone" />
+
+                <!-- 年：1-12 月多选，6 列两行 -->
+                <GridLayout
+                    android:id="@+id/gridMonthChips"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:columnCount="6"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/rowWeekdayChips"
+                    style="@style/ChipRow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/chipDay0"
+                        style="@style/ChipDay"
+                        android:text="日" />
+
+                    <Button
+                        android:id="@+id/chipDay1"
+                        style="@style/ChipDay"
+                        android:text="一" />
+
+                    <Button
+                        android:id="@+id/chipDay2"
+                        style="@style/ChipDay"
+                        android:text="二" />
+
+                    <Button
+                        android:id="@+id/chipDay3"
+                        style="@style/ChipDay"
+                        android:text="三" />
+
+                    <Button
+                        android:id="@+id/chipDay4"
+                        style="@style/ChipDay"
+                        android:text="四" />
+
+                    <Button
+                        android:id="@+id/chipDay5"
+                        style="@style/ChipDay"
+                        android:text="五" />
+
+                    <Button
+                        android:id="@+id/chipDay6"
+                        style="@style/ChipDay"
+                        android:text="六" />
+                </LinearLayout>
+
+                <!--
+                  重复档位：日常 / 法定工作日 / 法定休息日 / 自定义。
+                  前三个都由「法定日历」判定（含调休），所以不显示星期芯片 —— 星期与调休无关；
+                  只有「自定义」才需要勾星期几。
+                -->
+                <LinearLayout
+                    style="@style/ChipRow"
+                    android:id="@+id/rowWeekdayQuick"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnRepeatDaily"
+                        style="@style/Chip"
+                        android:text="@string/chip_daily" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnRepeatWeekdays"
+                        style="@style/Chip"
+                        android:text="@string/chip_weekdays" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnRepeatWeekend"
+                        style="@style/Chip"
+                        android:text="@string/chip_rest_day" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnRepeatCustom"
+                        style="@style/Chip"
+                        android:text="@string/chip_custom" />
+                </LinearLayout>
+
+                <!-- 间隔：每 N 天 / 农历每 N 年（每月 N 号的 N 就是开始日期的「日」，不单独设） -->
+                <TextView
+                    android:id="@+id/tvIntervalLabel"
+                    style="@style/FieldLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="@string/f_interval"
+                    android:visibility="gone" />
+
+                <!-- 间隔数量：点数值按钮开滚轮选 -->
+                <LinearLayout
+                    android:id="@+id/rowIntervalAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnIntervalAmount"
+                        style="@style/Widget.TaskAlarm.Button.Outlined"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:gravity="start|center_vertical"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:paddingStart="16dp"
+                        android:text="@string/interval_days_fmt"
+                        android:textAppearance="@style/Text.TaskAlarm.Title"
+                        app:cornerRadius="10dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvRepeatSummary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:textAppearance="@style/Text.TaskAlarm.Meta"
+                    android:textColor="?attr/colorOnSurfaceVariant" />
+
+                <!-- 法定节假日 / 调休 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/f_skip_holidays"
+                            android:textAppearance="@style/Text.TaskAlarm.Title"
+                            android:textColor="?attr/colorOnSurface" />
+
+                        <TextView
+                            android:id="@+id/tvHolidayHint"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:lineSpacingMultiplier="1.4"
+                            android:textAppearance="@style/Text.TaskAlarm.Meta"
+                            android:textColor="?attr/colorOnSurfaceVariant" />
+                    </LinearLayout>
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/switchSkipHolidays"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 小米联动 -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="14dp"
+            app:cardBackgroundColor="@color/app_card"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:contentDescription="@string/link_title"
+                        android:src="@drawable/ic_link"
+                        app:tint="?attr/colorPrimary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/link_title"
+                        android:textAppearance="@style/Text.TaskAlarm.Title"
+                        android:textColor="?attr/colorOnSurface" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:lineSpacingMultiplier="1.5"
+                    android:text="@string/link_intro"
+                    android:textAppearance="@style/Text.TaskAlarm.Meta"
+                    android:textColor="?attr/colorOnSurfaceVariant" />
+
+                <!-- 时钟 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:contentDescription="@string/link_clock"
+                        android:src="@drawable/ic_alarm"
+                        app:tint="?attr/colorOnSurfaceVariant" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/link_clock"
+                            android:textAppearance="@style/Text.TaskAlarm.Title"
+                            android:textColor="?attr/colorOnSurface" />
+
+                        <TextView
+                            android:id="@+id/tvClockDesc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:text="@string/link_clock_desc"
+                            android:textAppearance="@style/Text.TaskAlarm.Meta"
+                            android:textColor="?attr/colorOnSurfaceVariant" />
+                    </LinearLayout>
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/switchClock"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp" />
+                </LinearLayout>
+
+                <!-- 日历 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:contentDescription="@string/link_calendar"
+                        android:src="@drawable/ic_calendar"
+                        app:tint="?attr/colorOnSurfaceVariant" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/link_calendar"
+                            android:textAppearance="@style/Text.TaskAlarm.Title"
+                            android:textColor="?attr/colorOnSurface" />
+
+                        <TextView
+                            android:id="@+id/tvCalendarDesc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:text="@string/link_calendar_desc"
+                            android:textAppearance="@style/Text.TaskAlarm.Meta"
+                            android:textColor="?attr/colorOnSurfaceVariant" />
+                    </LinearLayout>
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/switchCalendar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnOpenClock"
+                        style="@style/Widget.TaskAlarm.Button.Tonal"
+                        android:layout_width="0dp"
+                        android:layout_height="46dp"
+                        android:layout_weight="1"
+                        android:text="@string/link_open_clock"
+                        android:textSize="13sp"
+                        app:cornerRadius="10dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnOpenCalendar"
+                        style="@style/Widget.TaskAlarm.Button.Tonal"
+                        android:layout_width="0dp"
+                        android:layout_height="46dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/link_open_calendar"
+                        android:textSize="13sp"
+                        app:cornerRadius="10dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:lineSpacingMultiplier="1.5"
+                    android:text="@string/link_note"
+                    android:textAppearance="@style/Text.TaskAlarm.Meta"
+                    android:textColor="?attr/colorOnSurfaceVariant" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 保存 / 删除 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/save"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:cornerRadius="10dp"
+            app:icon="@drawable/ic_check"
+            app:iconGravity="textStart"
+            app:iconPadding="8dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDelete"
+            style="@style/Widget.TaskAlarm.Button.Text"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="6dp"
+            android:text="@string/delete"
+            android:textColor="?attr/colorError"
+            android:textSize="14sp"
+            android:visibility="gone"
+            app:cornerRadius="10dp"
+            app:icon="@drawable/ic_delete"
+            app:iconGravity="textStart"
+            app:iconPadding="6dp"
+            app:iconTint="?attr/colorError" />
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 时间轴圆点 · 已完成：暖灰实心（退后，不抢视线） -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <size
+        android:width="7dp"
+        android:height="7dp" />
+    <solid android:color="@color/widget_text_sub" />
+</shape>

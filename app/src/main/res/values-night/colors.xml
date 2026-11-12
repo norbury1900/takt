@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      ============================================================
+      应用配色 · 深色（v3.34.65 玻璃化）
+      参照 app_html/mobile-ui-replica_red 第一排最右的深色日程屏：
+      深底 + 半透白卡 + 细白描边（磨砂玻璃质感，列表从卡下透出）。
+      注：View 体系无公开 backdrop-blur，玻璃感靠半透明+描边+投影模拟；
+      API31+ 真模糊需自绘 overlay（需要时再做）。
+      ============================================================
+    -->
+    <color name="app_bg">#FF2A2825</color>        <!-- 页面底：压深，玻璃对比才出得来 -->
+    <color name="app_card">#1FFFFFFF</color>      <!-- 玻璃卡：白 12%，透出背景 -->
+    <color name="app_card_alt">#14FFFFFF</color>  <!-- 分组容器：白 8% -->
+    <color name="app_card_hi">#2EFFFFFF</color>   <!-- 卡片上的小按钮：白 18% -->
+    <color name="app_stroke">#2EFFFFFF</color>    <!-- 玻璃描边：白 18% 细线 -->
+    <color name="app_text">#FFF2ECE1</color>      <!-- 主文字：米白 -->
+    <color name="app_text_sub">#FFA79E92</color>
+
+    <color name="accent">#FFE03630</color>          <!-- 中国红提亮版：色相对齐浅色 #BC2924（只提亮度不加橙） -->
+    <color name="accent_on">#FFF2ECE1</color>  <!-- 红底上的字/勾：米白（v3.34.68 从深棕改白，红底白勾才清楚） -->
+    <color name="accent_container">#4DBC2924</color><!-- 半透明红玻璃容器 -->
+    <color name="accent_on_container">#FFFFD9CB</color>
+
+    <!-- 任务卡状态着色（深色玻璃版）：待完成=中性玻璃（卡不自带红色，状态靠圆钮/药丸） -->
+    <color name="card_done">#2E44543C</color>
+    <color name="card_done_stroke">#3F5E7464</color>
+    <color name="card_todo">#1FFFFFFF</color>
+    <color name="card_todo_stroke">#2EFFFFFF</color>
+
+    <color name="ok_container">#FF324A36</color>
+    <color name="ok_on_container">#FFC8E2C9</color>
+    <!-- 深色底上的「已完成」条形要提亮，暗绿会糊在卡片里 -->
+    <color name="ok">#FF74A98C</color>
+    <color name="timeline_grid">#FF57524B</color>
+    <color name="wait_container">#FF4A463F</color>
+    <color name="wait_on_container">#FFD7CFC2</color>
+    <color name="danger_container">#FF5A2E25</color>
+    <color name="danger_on_container">#FFFFD5CB</color>
+
+    <color name="glass_tint">#1FFFFFFF</color>    <!-- 磨砂导航的 tint 层：白 12% -->
+</resources>

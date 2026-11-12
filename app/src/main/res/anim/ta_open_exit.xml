@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 页面打开：旧页加速淡出（比新页短一拍，视觉焦点让给新页） -->
+<alpha xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:interpolator/accelerate_quad"
+    android:duration="180"
+    android:fromAlpha="1"
+    android:toAlpha="0" />

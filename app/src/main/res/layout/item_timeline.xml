@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  计划页日程（v3.34.80 按 dark-task-cards.html 对齐）：
+  顶部换成参考稿 agenda-head —— 左「10 月 27 日 · 星期二」，右「07:30 – 20:00」；
+  下面 boxAgendaList 每行由 bindTimeline 构建：时刻 · 轴线 · 圆角卡（标题 + 目标时刻 · 状态）。
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="2dp"
+    android:paddingBottom="6dp">
+
+    <!-- agenda-head（参考稿）：左日期、右时间范围，一细行，不再用居中胶囊 -->
+    <LinearLayout
+        android:id="@+id/rowTimelineHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="6dp"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:id="@+id/tvAgendaDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="13.5sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvTimelineRange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/app_text_sub"
+            android:textSize="11.5sp" />
+    </LinearLayout>
+
+    <!-- 日程行容器：时刻 | 轴线 | 卡片，代码构建 -->
+    <LinearLayout
+        android:id="@+id/boxAgendaList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+</LinearLayout>

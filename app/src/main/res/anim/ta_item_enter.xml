@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 列表单项入场：淡入 + 上浮 20dp（配 ta_layout_stagger 逐行错拍） -->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:interpolator/decelerate_quad">
+    <alpha
+        android:duration="260"
+        android:fromAlpha="0"
+        android:toAlpha="1" />
+    <translate
+        android:duration="260"
+        android:fromYDelta="20dp"
+        android:toYDelta="0" />
+</set>

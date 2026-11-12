@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!--
+      基础主题。
+      配色只有一套（象牙米白 + 陶土橘），深色值由 values-night/colors.xml 覆盖，
+      因此「浅色 / 深色」两个主题共用这个主题定义，靠 AppCompatDelegate 切换明暗即可。
+    -->
+    <style name="Base.Theme.TaskAlarm" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <!-- windowLightStatusBar 交给 Material3 DayNight 自管（浅色 true / 深色 false） -->
+
+
+        <!-- 全局字体：朱雀仿宋（覆盖 M3 所有文字档位） -->
+        <item name="textAppearanceDisplayLarge">@style/TA.Serif.DisplayLarge</item>
+        <item name="textAppearanceDisplayMedium">@style/TA.Serif.DisplayMedium</item>
+        <item name="textAppearanceDisplaySmall">@style/TA.Serif.DisplaySmall</item>
+        <item name="textAppearanceHeadlineLarge">@style/TA.Serif.HeadlineLarge</item>
+        <item name="textAppearanceHeadlineMedium">@style/TA.Serif.HeadlineMedium</item>
+        <item name="textAppearanceHeadlineSmall">@style/TA.Serif.HeadlineSmall</item>
+        <item name="textAppearanceTitleLarge">@style/TA.Serif.TitleLarge</item>
+        <item name="textAppearanceTitleMedium">@style/TA.Serif.TitleMedium</item>
+        <item name="textAppearanceTitleSmall">@style/TA.Serif.TitleSmall</item>
+        <item name="textAppearanceBodyLarge">@style/TA.Serif.BodyLarge</item>
+        <item name="textAppearanceBodyMedium">@style/TA.Serif.BodyMedium</item>
+        <item name="textAppearanceBodySmall">@style/TA.Serif.BodySmall</item>
+        <item name="textAppearanceLabelLarge">@style/TA.Serif.LabelLarge</item>
+        <item name="textAppearanceLabelMedium">@style/TA.Serif.LabelMedium</item>
+        <item name="textAppearanceLabelSmall">@style/TA.Serif.LabelSmall</item>
+
+        <!-- 主色：陶土橘 -->
+        <item name="colorPrimary">@color/accent</item>
+        <item name="colorOnPrimary">@color/accent_on</item>
+        <item name="colorPrimaryContainer">@color/accent_container</item>
+        <item name="colorOnPrimaryContainer">@color/accent_on_container</item>
+        <item name="colorSecondaryContainer">@color/accent_container</item>
+        <item name="colorOnSecondaryContainer">@color/accent_on_container</item>
+        <item name="colorTertiaryContainer">@color/ok_container</item>
+        <item name="colorOnTertiaryContainer">@color/ok_on_container</item>
+        <item name="colorError">@color/danger</item>
+        <item name="colorErrorContainer">@color/danger_container</item>
+        <item name="colorOnErrorContainer">@color/danger_on_container</item>
+
+        <!-- 面 / 文字 / 描边 -->
+        <item name="colorSurface">@color/app_bg</item>
+        <item name="colorOnSurface">@color/app_text</item>
+        <item name="colorOnSurfaceVariant">@color/app_text_sub</item>
+        <item name="colorOnBackground">@color/app_text</item>
+        <item name="colorSurfaceContainer">@color/app_card_alt</item>
+        <item name="colorSurfaceContainerLow">@color/app_card</item>
+        <item name="colorSurfaceContainerHigh">@color/app_card_alt</item>
+        <item name="colorSurfaceContainerHighest">@color/app_card_alt</item>
+        <item name="colorSurfaceVariant">@color/app_stroke</item>
+        <item name="colorOutline">@color/app_stroke</item>
+        <item name="colorOutlineVariant">@color/app_stroke</item>
+
+        <item name="android:windowBackground">@drawable/bg_window</item>
+
+        <!-- 页面转场：新页上浮淡入、旧页淡出（WindowAnim.TaskAlarm，借 M3 emphasized easing 的手感） -->
+        <item name="android:windowAnimationStyle">@style/WindowAnim.TaskAlarm</item>
+
+        <!-- Android 12+ 系统级毛玻璃：弹窗背后做真实模糊 -->
+        <item name="android:windowBlurBehindEnabled" tools:targetApi="31">true</item>
+        <item name="android:windowBackgroundBlurRadius" tools:targetApi="31">24dp</item>
+
+        <item name="alertDialogTheme">@style/ThemeOverlay.TaskAlarm.Dialog</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.TaskAlarm.Dialog</item>
+        <!--
+          日期 / 时间选择改成自定义底部弹窗（TimeSheet / DateSheet）。
+          BottomSheetDialog 会从所在主题解析 bottomSheetDialogTheme，
+          这里指向本应用 overlay —— 否则弹窗还是 Material 默认白底，与米白界面割裂。
+        -->
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.TaskAlarm.BottomSheet</item>
+        <!-- 没写 style 的按钮（保存、打开小米时钟等）统一小圆角 + 文字居中 -->
+        <item name="materialButtonStyle">@style/Widget.TaskAlarm.Button</item>
+        <!--
+          兜底一：普通 TextView 只写 textSize、没挂 textAppearance 时，
+          走 textViewStyle 默认样式 —— 这里强制默认字体为朱雀仿宋，
+          否则这类文字（如首页空状态副文案）会漏成系统黑体。
+          已显式指定 textAppearance / fontFamily 的（15 档 TA.Serif、
+          +/- 按钮的 sans-serif）不受影响，优先级更高。
+        -->
+        <item name="android:textViewStyle">@style/Widget.TaskAlarm.TextView</item>
+        <item name="android:editTextStyle">@style/Widget.TaskAlarm.EditText</item>
+    </style>
+
+    <style name="Theme.TaskAlarm" parent="Base.Theme.TaskAlarm" />
+
+    <!-- 全局 Activity 转场（anim/ta_*）：开=上浮淡入，关=下沉淡出，时长 ≤230ms 不拖沓 -->
+    <style name="WindowAnim.TaskAlarm" parent="">
+        <item name="android:activityOpenEnterAnimation">@anim/ta_open_enter</item>
+        <item name="android:activityOpenExitAnimation">@anim/ta_open_exit</item>
+        <item name="android:activityCloseEnterAnimation">@anim/ta_close_enter</item>
+        <item name="android:activityCloseExitAnimation">@anim/ta_close_exit</item>
+        <item name="android:taskOpenEnterAnimation">@anim/ta_open_enter</item>
+        <item name="android:taskOpenExitAnimation">@anim/ta_open_exit</item>
+        <item name="android:taskCloseEnterAnimation">@anim/ta_close_enter</item>
+        <item name="android:taskCloseExitAnimation">@anim/ta_close_exit</item>
+    </style>
+
+    <!-- 弹窗：真实背景模糊 + 更低的压暗 -->
+    <style name="ThemeOverlay.TaskAlarm.Dialog" parent="ThemeOverlay.Material3.Dialog.Alert">
+        <item name="android:windowBlurBehindEnabled" tools:targetApi="31">true</item>
+        <item name="android:windowBackgroundBlurRadius" tools:targetApi="31">28dp</item>
+        <item name="android:backgroundDimAmount">0.28</item>
+        <!--
+          对话框 window 的 context 用的是这个 overlay，**不继承 Base.Theme.TaskAlarm**，
+          所以主主题里的字体兜底在这里全部失效，必须重复挂一遍：
+          标题/消息走 15 档 TA.Serif，按钮走 Widget.TaskAlarm.Button，纯文字走 textViewStyle。
+        -->
+        <item name="android:textViewStyle">@style/Widget.TaskAlarm.TextView</item>
+        <item name="materialButtonStyle">@style/Widget.TaskAlarm.Button</item>
+        <item name="textAppearanceDisplayLarge">@style/TA.Serif.DisplayLarge</item>
+        <item name="textAppearanceDisplayMedium">@style/TA.Serif.DisplayMedium</item>
+        <item name="textAppearanceDisplaySmall">@style/TA.Serif.DisplaySmall</item>
+        <item name="textAppearanceHeadlineLarge">@style/TA.Serif.HeadlineLarge</item>
+        <item name="textAppearanceHeadlineMedium">@style/TA.Serif.HeadlineMedium</item>
+        <item name="textAppearanceHeadlineSmall">@style/TA.Serif.HeadlineSmall</item>
+        <item name="textAppearanceTitleLarge">@style/TA.Serif.TitleLarge</item>
+        <item name="textAppearanceTitleMedium">@style/TA.Serif.TitleMedium</item>
+        <item name="textAppearanceTitleSmall">@style/TA.Serif.TitleSmall</item>
+        <item name="textAppearanceBodyLarge">@style/TA.Serif.BodyLarge</item>
+        <item name="textAppearanceBodyMedium">@style/TA.Serif.BodyMedium</item>
+        <item name="textAppearanceBodySmall">@style/TA.Serif.BodySmall</item>
+        <item name="textAppearanceLabelLarge">@style/TA.Serif.LabelLarge</item>
+        <item name="textAppearanceLabelMedium">@style/TA.Serif.LabelMedium</item>
+        <item name="textAppearanceLabelSmall">@style/TA.Serif.LabelSmall</item>
+    </style>
+
+    <!--
+      底部弹窗（日期 / 时间选择器）：圆角只在顶部，底色用暖白卡片色，
+      拖拽把手与背景都跟随主题（values-night 自动换色）。
+      注意：这个 overlay 不继承 Base.Theme.TaskAlarm，字体兜底必须重复挂一遍
+      （同 ThemeOverlay.TaskAlarm.Dialog 的道理），否则弹窗里的文字会漏成黑体。
+    -->
+    <style name="ThemeOverlay.TaskAlarm.BottomSheet" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="android:textViewStyle">@style/Widget.TaskAlarm.TextView</item>
+        <item name="android:editTextStyle">@style/Widget.TaskAlarm.EditText</item>
+        <item name="materialButtonStyle">@style/Widget.TaskAlarm.Button</item>
+        <item name="textAppearanceDisplayLarge">@style/TA.Serif.DisplayLarge</item>
+        <item name="textAppearanceDisplayMedium">@style/TA.Serif.DisplayMedium</item>
+        <item name="textAppearanceDisplaySmall">@style/TA.Serif.DisplaySmall</item>
+        <item name="textAppearanceHeadlineLarge">@style/TA.Serif.HeadlineLarge</item>
+        <item name="textAppearanceHeadlineMedium">@style/TA.Serif.HeadlineMedium</item>
+        <item name="textAppearanceHeadlineSmall">@style/TA.Serif.HeadlineSmall</item>
+        <item name="textAppearanceTitleLarge">@style/TA.Serif.TitleLarge</item>
+        <item name="textAppearanceTitleMedium">@style/TA.Serif.TitleMedium</item>
+        <item name="textAppearanceTitleSmall">@style/TA.Serif.TitleSmall</item>
+        <item name="textAppearanceBodyLarge">@style/TA.Serif.BodyLarge</item>
+        <item name="textAppearanceBodyMedium">@style/TA.Serif.BodyMedium</item>
+        <item name="textAppearanceBodySmall">@style/TA.Serif.BodySmall</item>
+        <item name="textAppearanceLabelLarge">@style/TA.Serif.LabelLarge</item>
+        <item name="textAppearanceLabelMedium">@style/TA.Serif.LabelMedium</item>
+        <item name="textAppearanceLabelSmall">@style/TA.Serif.LabelSmall</item>
+        <item name="bottomSheetStyle">@style/Widget.TaskAlarm.BottomSheet.Modal</item>
+    </style>
+
+    <style name="Widget.TaskAlarm.BottomSheet.Modal" parent="Widget.Material3.BottomSheet.Modal">
+        <!-- 底色走 app_card（暖白），深色主题下自动变深灰卡片色 -->
+        <item name="backgroundTint">@color/app_card</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.TaskAlarm.BottomSheet</item>
+    </style>
+
+    <!-- 24dp 顶部圆角、底部直角：贴住屏幕底边，像从页面里抽出来的一张卡 -->
+    <style name="ShapeAppearance.TaskAlarm.BottomSheet" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">24dp</item>
+        <item name="cornerSizeTopRight">24dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <!-- 弹窗里的快捷选项 chip：小圆角描边钮，与全局 10dp 圆角语言一致 -->
+    <style name="Widget.TaskAlarm.Button.ChipSmall" parent="Widget.TaskAlarm.Button.Outlined">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:paddingStart">14dp</item>
+        <item name="android:paddingEnd">14dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:textSize">13sp</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+    <!--
+      弹窗里程序化创建的按钮：MaterialButton 的构造函数只认 defStyleAttr，
+      没法直接传样式资源，所以包一层 ContextThemeWrapper，把 materialButtonStyle
+      指向对应变体。父主题的配色（colorPrimary 等）透过 wrapper 继续生效。
+    -->
+    <style name="ThemeOverlay.TaskAlarm.SheetButtonText" parent="">
+        <item name="materialButtonStyle">@style/Widget.TaskAlarm.Button.Text</item>
+    </style>
+
+    <style name="ThemeOverlay.TaskAlarm.SheetButtonOutlined" parent="">
+        <item name="materialButtonStyle">@style/Widget.TaskAlarm.Button.Outlined</item>
+    </style>
+
+    <style name="ThemeOverlay.TaskAlarm.SheetButtonChip" parent="">
+        <item name="materialButtonStyle">@style/Widget.TaskAlarm.Button.ChipSmall</item>
+    </style>
+
+    <!--
+      响铃页：**跟随用户选的浅 / 深主题**。
+      以前这里固定 Theme.Material3.Dark，导致两个问题：
+        1. 选浅色主题时，响铃页突然蹦出一个黑底页面；
+        2. 固定 Dark 主题没继承我们的配色，按钮就变成了 Material 默认的紫色。
+      现在继承 Base.Theme.TaskAlarm —— 颜色、明暗都跟着主界面走。
+    -->
+    <style name="Theme.TaskAlarm.Ring" parent="Base.Theme.TaskAlarm">
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+
+    <!-- ============ 文字层级 ============ -->
+
+    <!--
+      页面大标题：中文用打包进来的朱雀仿宋（@font/zhuque_fangsong）。
+      注意：Android 的 android:fontFamily="serif" **只对拉丁字符生效**，
+      中文会 fallback 到系统黑体 —— 所以必须自带中文字体文件才能真的看到宋体/仿宋效果。
+    -->
+    <style name="Text.TaskAlarm.Display" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="android:fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:textSize">27sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Text.TaskAlarm.Headline" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="android:fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="Text.TaskAlarm.Title" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.TaskAlarm.Body" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:lineSpacingMultiplier">1.4</item>
+    </style>
+
+    <style name="Text.TaskAlarm.Label" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.TaskAlarm.Meta" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:lineSpacingMultiplier">1.5</item>
+    </style>
+
+    <!-- 卡片标题：无衬线、中等字重，缩到 16sp 更精致 -->
+    <!-- 注意：带点的样式名若省略 parent，AAPT2 会把前缀当成隐式父样式去找，必须显式写 parent="" -->
+    <style name="Text.TaskAlarm.CardTitle" parent="">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <!-- 卡片副信息：小一号的暖灰 -->
+    <style name="Text.TaskAlarm.CardMeta" parent="">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+        <item name="android:lineSpacingMultiplier">1.45</item>
+    </style>
+
+    <!-- 字段标题 -->
+    <style name="FieldLabel">
+        <item name="android:textAppearance">@style/Text.TaskAlarm.Label</item>
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+    </style>
+
+    <!-- 分区标题：小字、字距放开，类似参考图里的 RHYTHM / tutorials -->
+    <style name="SectionTitle">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.1</item>
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+    </style>
+
+    <!-- 数值大字（统计页用） -->
+    <style name="BigNumber">
+        <item name="android:fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:textSize">34sp</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <!-- ============ 选项芯片：独立胶囊（参考图里的 Whole / Half / Quarter） ============ -->
+
+    <!--
+      全局按钮基线：小圆角矩形（10dp），文字垂直居中。
+      中文衬线字体 ascent 大、descent 小，光有 gravity=center 文字仍会偏上，
+      真正压住的是 ButtonTuner 在运行时把 firstBaseline/lastBaseline 归零（API 28 属性），
+      这里只负责静态度量，两边配合才能既无 lint 风险又真居中。
+    -->
+    <style name="Widget.TaskAlarm.Button" parent="Widget.Material3.Button">
+        <!-- MaterialButton 对 textAppearance 里的 fontFamily 不可靠，必须直接挂字体 -->
+        <item name="android:fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:gravity">center</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="cornerRadius">10dp</item>
+        <!--
+          兜底二：M3 的 Widget.Material3.Button 把 android:textAppearance
+          硬编码为 TextAppearance.Material3.LabelLarge（不是 ?attr 主题项），
+          所以覆写主题的 textAppearanceLabelLarge 对按钮文字无效 ——
+          必须在这里显式挂仿宋档位，按钮文字才不会是黑体。
+        -->
+        <item name="android:textAppearance">@style/TA.Serif.LabelLarge</item>
+    </style>
+
+    <!-- 同款兜底：显式引用库 OutlinedButton / TonalButton / TextButton 的按钮 -->
+    <style name="Widget.TaskAlarm.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:textAppearance">@style/TA.Serif.LabelLarge</item>
+    </style>
+    <style name="Widget.TaskAlarm.Button.Tonal" parent="Widget.Material3.Button.TonalButton">
+        <item name="android:fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:textAppearance">@style/TA.Serif.LabelLarge</item>
+    </style>
+    <style name="Widget.TaskAlarm.Button.Text" parent="Widget.Material3.Button.TextButton">
+        <item name="android:fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:textAppearance">@style/TA.Serif.LabelLarge</item>
+    </style>
+
+    <!--
+      普通 TextView 默认样式：只补字体，其余沿用 framework 的 Widget.TextView。
+      注意不能用 parent="Widget.Material3.TextView" —— M3 库里没有这个样式
+      （它的主题也没设 textViewStyle，默认就是 framework 的 Widget.TextView）。
+      textColor 显式再写一遍：DayNight 下 textColorPrimary 会随明暗切换，
+      不写的话极个别定制 Rom 上默认色会漂，深色主题有黑字黑底的风险。
+    -->
+    <style name="Widget.TaskAlarm.TextView" parent="@android:style/Widget.TextView">
+        <item name="android:fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <!-- 输入框兜底：任务名 / 备注 / 标签输入框默认走仿宋 -->
+    <style name="Widget.TaskAlarm.EditText" parent="@android:style/Widget.EditText">
+        <item name="android:fontFamily">@font/zhuque_fangsong</item>
+    </style>
+
+    <style name="Chip" parent="Widget.TaskAlarm.Button.Outlined">
+        <!-- 宋体自带上下留白会让按钮文字看起来偏下，这里去掉并强制居中 -->
+        <item name="android:gravity">center</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">46dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginEnd">7dp</item>
+        <item name="android:textSize">13.5sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <!-- 46dp 高配 23dp 就是半个圆，太笨；压到 8dp 变成利落的小圆角矩形 -->
+        <item name="cornerRadius">8dp</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+    <style name="ChipDay" parent="Chip">
+        <item name="android:layout_height">44dp</item>
+        <item name="android:layout_marginEnd">4dp</item>
+        <item name="android:textSize">14sp</item>
+        <!-- 星期是 7 个并排小格子，圆角要从胶囊 23dp 一路压到 6dp，太圆会显得笨 -->
+        <item name="cornerRadius">6dp</item>
+    </style>
+
+    <!--
+      首页页签：文字态导航，不做描边胶囊。
+      选中态的淡陶土软底由 Ui.tab() 运行时上，这里只管静态度量；
+      不等宽拉伸（无 layout_weight），页签靠左自然排，节奏更像文字导航。
+    -->
+    <style name="Widget.TaskAlarm.Tab" parent="Widget.TaskAlarm.Button.Outlined">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">34dp</item>
+        <item name="android:layout_marginEnd">18dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">15sp</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="strokeWidth">0dp</item>
+    </style>
+
+    <!-- 芯片行容器：只做横向排布，不再套底槽（参考图的 chip 是独立的） -->
+    <style name="ChipRow">
+        <item name="android:background">@null</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <!--
+      全局宋体：覆盖 Material3 的全部 15 档 textAppearance。
+      只改 fontFamily、其余（字号 / 字重 / 字距）沿用 M3 原值 ——
+      这样标题、正文、按钮、chip、弹窗全都走朱雀仿宋，不会漏掉某一处。
+    -->
+    <style name="TA.Serif.DisplayLarge" parent="TextAppearance.Material3.DisplayLarge">
+        <item name="fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="TA.Serif.DisplayMedium" parent="TextAppearance.Material3.DisplayMedium">
+        <item name="fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="TA.Serif.DisplaySmall" parent="TextAppearance.Material3.DisplaySmall">
+        <item name="fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="TA.Serif.HeadlineLarge" parent="TextAppearance.Material3.HeadlineLarge">
+        <item name="fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="TA.Serif.HeadlineMedium" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="TA.Serif.HeadlineSmall" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="TA.Serif.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
+        <item name="fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="TA.Serif.TitleMedium" parent="TextAppearance.Material3.TitleMedium">
+        <item name="fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="TA.Serif.TitleSmall" parent="TextAppearance.Material3.TitleSmall">
+        <item name="fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="TA.Serif.BodyLarge" parent="TextAppearance.Material3.BodyLarge">
+        <item name="fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="TA.Serif.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
+        <item name="fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="TA.Serif.BodySmall" parent="TextAppearance.Material3.BodySmall">
+        <item name="fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="TA.Serif.LabelLarge" parent="TextAppearance.Material3.LabelLarge">
+        <item name="fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="TA.Serif.LabelMedium" parent="TextAppearance.Material3.LabelMedium">
+        <item name="fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="TA.Serif.LabelSmall" parent="TextAppearance.Material3.LabelSmall">
+        <item name="fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:fontFamily">@font/zhuque_fangsong</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+</resources>

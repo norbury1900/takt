@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 图标小按钮的底：比卡片白一档的实底（与任务卡的 app_card 区分开），无描边 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="17dp" />
+    <solid android:color="@color/app_card_hi" />
+</shape>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 小部件行尾「完成」按钮：淡陶土小胶囊（固定浅色，不随系统深色切换） -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/widget_pill_bg" />
+    <corners android:radius="8dp" />
+</shape>

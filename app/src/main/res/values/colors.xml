@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 语义色 -->
+    <color name="ok">#FF3B7A57</color>
+    <color name="warn">#FF8A5A00</color>
+    <color name="danger">#FFB3261E</color>
+
+    <!--
+      ============================================================
+      应用配色 · 浅色（v3.34.63 中国红方向）
+      参考 app_html/mobile-ui-replica_red：暖纸底 + 米白卡片 +
+      中国红点缀 + 鎏金容器 + 墨色字。深色版本在 values-night 不变。
+      ============================================================
+    -->
+    <!--
+      v3.34.91 按用户给的浅色色板对表：
+        cream #FAF6EF = 页面底 ｜ paper #F0E9DF = 辅助背景
+        ink #292722 = 主文字 ｜ muted #969086 = 次要文字
+        red #BC2924 = 主色 ｜ red-dark #861D1B = 深红 ｜ gold #DEBD81 = 强调 ｜ line #E7DFD4 = 线
+      卡片不在色板里，取比页面亮一档的白（#FFFDFA），保证 cream 底上仍有层次。
+    -->
+    <color name="app_bg">#FFFAF6EF</color>        <!-- 页面底：cream 暖白 -->
+    <color name="app_card">#FFFFFDFA</color>      <!-- 卡片：比页面亮一档 -->
+    <color name="app_card_alt">#FFF0E9DF</color>  <!-- 辅助背景/分组容器：paper 米灰 -->
+    <color name="app_card_hi">#FFFFFFFF</color>   <!-- 卡片上的小按钮：纯白 -->
+    <color name="app_stroke">#FFE7DFD4</color>    <!-- 极细描边：line -->
+    <color name="app_text">#FF292722</color>      <!-- 主文字：ink 墨色 -->
+    <color name="app_text_sub">#FF969086</color>  <!-- 次要文字：muted 暖灰 -->
+
+    <color name="accent">#FFBC2924</color>          <!-- 中国红（主色） -->
+    <color name="accent_on">#FFFAF6EF</color>       <!-- 红底上放 cream 色字 -->
+    <color name="accent_container">#FFF8E3DD</color><!-- 红色淡容器（v3.34.94 去掉旧鎏金杏色） -->
+    <color name="accent_on_container">#FF861D1B</color><!-- 深红字（red-dark） -->
+    <color name="gold">#FFDEBD81</color>            <!-- 淡金：强调/装饰（色板 gold） -->
+
+    <!-- 任务卡的状态着色：已完成 = 淡绿，待完成 = 淡红，今天不用做的保持中性暖白 -->
+    <color name="card_done">#FFE9F1E4</color>
+    <color name="card_done_stroke">#FFC9DEC4</color>
+    <color name="card_todo">#FFFBEFE8</color>
+    <color name="card_todo_stroke">#FFF0D9CB</color>
+
+    <color name="ok_container">#FFDCE7DA</color>
+    <color name="ok_on_container">#FF2F5535</color>
+
+    <!-- 计划页竖向时间图：参考线比 app_stroke 深一档才读得出；条形用饱和色（accent/ok）保证存在感 -->
+    <color name="timeline_grid">#FFE6DCCB</color>
+    <color name="wait_container">#FFF0E9DF</color>   <!-- 等待态 pill 底：paper（v3.34.94 去暖褐） -->
+    <color name="wait_on_container">#FF969086</color><!-- 等待态 pill 字：muted -->
+    <color name="danger_container">#FFF6DAD4</color>
+    <color name="danger_on_container">#FF7A2A1C</color>
+
+    <!-- 旧布局引用兼容（等价于新卡片色） -->
+    <color name="glass_bg">@color/app_card</color>
+    <color name="glass_bg_high">@color/app_card_alt</color>
+    <color name="glass_hairline">@color/app_stroke</color>
+    <color name="glass_tint">#B3FAF6EF</color>     <!-- 磨砂导航的 tint 层：奶白 70% -->
+
+    <!-- 今日概览红卡（v3.34.69）：整页玻璃里的一块中国红，深浅色共用（红块要在两种主题里都跳出来） -->
+    <color name="overview_grad_end">#FF8E1D1B</color>
+    <color name="overview_sub">#FFE5B598</color>   <!-- 红卡上的次要文字：陶土杏色（参考稿 daily-stats） -->
+    <color name="overview_track">#33FAF6EF</color> <!-- 完成度条的底槽：20% 米白 -->
+
+    <!--
+      ============================================================
+      桌面小部件专用色 · 固定浅色（v3.34.27）
+      ============================================================
+      小组件的 RemoteViews 是**桌面启动器进程**渲染的：MIUI / HyperOS 会按
+      **系统**深色配置解析颜色，即使 App 内在「深色模式」里被单独排除（App 保持
+      浅色），小组件照样走 values-night 变成黑底（用户 2026-10-22 实测）。
+      对策：小组件全部引用这一组 widget_* 颜色，且**不提供 values-night 版本**，
+      资源解析器永远取浅色 —— 小组件因此永远跟 App 的浅色主题统一。
+      值直接抄浅色版（不引用 app_*），避免将来有人给 app_* 加 night 变体时被带走。
+    -->
+    <color name="widget_bg">#FFFFFDFA</color>          <!-- 卡片底：与新浅色卡同色（v3.34.92） -->
+    <color name="widget_text">#FF292722</color>        <!-- 主文字：墨色 -->
+    <color name="widget_text_sub">#FF969086</color>    <!-- 次要文字：暖灰 -->
+    <color name="widget_accent">#FFBC2924</color>      <!-- 标题 / 强调：中国红 -->
+    <color name="widget_stroke">#FFE7DFD4</color>      <!-- 分隔细线 -->
+    <color name="widget_pill_bg">#FFF6E3D4</color>     <!-- 「完成」按钮底：鎏金淡 -->
+    <color name="widget_pill_text">#FF861D1B</color>   <!-- 「完成」按钮字：深红 -->
+
+    <!-- widget 深色主题（v3.34.93）：系统深色时 refresh 里经
+         setInt(setBackgroundResource) / setTextColor 切到这一组；同样不设 night 变体。
+         值对齐 values-night 的深色 App 配色（v3.34.65 玻璃化后的中国红方向，
+         不再用旧的陶土橘）。 -->
+    <color name="widget_dark_bg">#FF2A2825</color>        <!-- 深底：同 night app_bg -->
+    <color name="widget_dark_stroke">#2EFFFFFF</color>    <!-- 玻璃描边：白 18% -->
+    <color name="widget_dark_text">#FFF2ECE1</color>      <!-- 主文字：米白 -->
+    <color name="widget_dark_sub">#FFA79E92</color>       <!-- 次要文字 -->
+    <color name="widget_dark_accent">#FFE03630</color>    <!-- 中国红提亮版（同 night accent） -->
+    <color name="widget_dark_pill_bg">#4DBC2924</color>   <!-- 完成钮底：半透明红玻璃 -->
+    <color name="widget_dark_pill_text">#FFFFD9CB</color> <!-- 完成钮字：浅杏 -->
+</resources>

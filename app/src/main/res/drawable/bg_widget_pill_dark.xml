@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 「完成」胶囊深色版（v3.34.44）：TodayWidget 经 setInt(setBackgroundResource) 切换 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/widget_dark_pill_bg" />
+    <corners android:radius="8dp" />
+</shape>

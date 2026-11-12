@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 今日概览卡（v3.34.69）：整页玻璃里的一块中国红，参考稿 dashboard 屏的红底问候区 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:angle="135"
+        android:startColor="@color/accent"
+        android:endColor="@color/overview_grad_end" />
+    <corners android:radius="20dp" />
+</shape>

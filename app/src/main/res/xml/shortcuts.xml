@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="new_task"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/btn_new_task">
+        <intent
+            android:action="com.norbury.taskalarm.NEW_TASK"
+            android:targetClass="com.norbury.taskalarm.TaskEditActivity"
+            android:targetPackage="com.norbury.taskalarm" />
+    </shortcut>
+</shortcuts>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 桌面小部件「迷你时间轴」（v3.34.45 整卡自绘）：整幅画进位图（含表头与完成胶囊），
+     因为 RemoteViews 的 XML fontFamily 到启动器进程会被吞（v3.34.44 实测），
+     位图在 App 进程绘制才能保证全线朱雀仿宋。
+     btnWidgetDone 是透明点击层，盖住位图里固定位置的完成胶囊（尺寸对齐
+     TimelineRenderer.PILL_W/PILL_H），点它打卡；点位图其余区域进 App。 -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widgetRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_widget">
+
+    <ImageView
+        android:id="@+id/widgetTimeline"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY" />
+
+    <TextView
+        android:id="@+id/btnWidgetDone"
+        android:layout_width="132dp"
+        android:layout_height="30dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@null"
+        android:gravity="center" />
+</FrameLayout>

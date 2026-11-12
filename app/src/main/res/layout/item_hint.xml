@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 计划页空态提示行（如「这天没有安排」）—— 事项列表取消后时间图的兜底 -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tvHint"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="18dp"
+    android:paddingTop="14dp"
+    android:paddingEnd="18dp"
+    android:paddingBottom="14dp"
+    android:textColor="?attr/colorOnSurfaceVariant"
+    android:textSize="13sp" />

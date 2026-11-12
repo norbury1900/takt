@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  页面底：纯色平铺。
+  参考图（Chords / Songs / Lyrics）用的都是干净的单色底，
+  没有任何光晕或渐变 —— 之前那套彩色光晕会跟卡片抢注意力，反而显脏。
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/app_bg" />
+</shape>

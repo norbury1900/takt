@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  计划页月历的月份切换按钮（上月 / 下月）：方形 + 小圆角（10dp，与全局按钮圆角语言一致），
+  主题陶土橘实底、无描边。图标在布局里用 colorOnPrimary 反白（深色主题自动切换）。
+  注意：bg_circle_button 是共享底（日期弹窗 / 响铃页也用），月份按钮不要动它，另开本文件。
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/accent" />
+    <corners android:radius="10dp" />
+</shape>

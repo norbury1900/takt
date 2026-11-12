@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- 精确闹钟：Android 12+ 需申请；Android 14+ 默认拒绝，需引导用户开启 -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <!-- 通知：Android 13+ 需运行时申请 -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- 前台服务：响铃期间保持播放 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <!-- Android 15 对 dataSync 型前台服务有每日累计时长与开机拉起限制，外部控制改用 specialUse -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <!-- 锁屏下唤醒 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- 开机后重新排定闹钟 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- 锁屏全屏弹出响铃页 -->
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+    <!-- 震动 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- 局域网控制：内置 HTTP server 供 PC 端 AI 对接 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 引导用户把本应用加入电池优化白名单（保活） -->
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <!-- 响铃时点亮屏幕 -->
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.TURN_SCREEN_ON" />
+
+    <!-- 小米联动：写入系统时钟 -->
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <!-- 小米联动：写入系统日历（小米日历基于标准 CalendarContract 实现） -->
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+
+    <!--
+      Android 11（API 30）起的「包可见性」限制：
+      不在这里声明，resolveActivity(ACTION_SET_ALARM) 一律返回 null，
+      就会出现「明明装了时钟却检测不到」的情况。这是本应用之前找不到小米时钟的根因。
+    -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.SET_ALARM" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.SHOW_ALARMS" />
+        </intent>
+        <package android:name="com.android.deskclock" />
+        <package android:name="com.miui.deskclock" />
+        <package android:name="com.google.android.deskclock" />
+        <package android:name="com.android.alarmclock" />
+    </queries>
+
+    <application
+        android:name=".TaskAlarmApp"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TaskAlarm"
+        tools:targetApi="34">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".TaskEditActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+
+        <!-- 统计页：连续打卡 + 完成率 + 30 天趋势 -->
+        <activity
+            android:name=".StatsActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+
+        <!-- 导入任务：文件选择 / 粘贴 / 外部分享三种入口 -->
+        <activity
+            android:name=".ImportActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="adjustResize">
+
+            <!-- 让 .json / .txt 在文件管理器、微信、QQ 里能被"用任务闹钟打开" -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:mimeType="application/json" />
+                <data android:mimeType="text/json" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+
+            <!-- 分享一段 JSON 文本到本应用 -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+                <data android:mimeType="application/json" />
+            </intent-filter>
+        </activity>
+
+        <!-- 响铃页：锁屏上直接显示 -->
+        <activity
+            android:name=".AlarmRingActivity"
+            android:exported="false"
+            android:launchMode="singleInstance"
+            android:excludeFromRecents="true"
+            android:showOnLockScreen="true"
+            android:showWhenLocked="true"
+            android:turnScreenOn="true"
+            android:taskAffinity=""
+            android:theme="@style/Theme.TaskAlarm.Ring" />
+
+        <!-- 响铃页点进某条任务后的任务界面（记组数 / 勾清单） -->
+        <activity
+            android:name=".RingTaskActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:showOnLockScreen="true"
+            android:showWhenLocked="true"
+            android:turnScreenOn="true"
+            android:taskAffinity=""
+            android:theme="@style/Theme.TaskAlarm.Ring" />
+
+        <!-- 闹钟触发接收器 -->
+        <receiver
+            android:name=".alarm.AlarmReceiver"
+            android:exported="false" />
+
+        <!-- 开机 / 应用更新后重排闹钟 -->
+        <receiver
+            android:name=".alarm.BootReceiver"
+            android:exported="true"
+            android:directBootAware="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+            </intent-filter>
+        </receiver>
+
+        <!-- 精确闹钟权限被授予/撤销时的回调 -->
+        <receiver
+            android:name=".alarm.ExactAlarmPermissionReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.app.action.SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
+
+        <!--
+          PC 端 AI / 脚本经 adb 触发导入：收到广播不直接写库，
+          只是把 JSON 送进 ImportActivity 的预览确认流程。
+          exported=true 是 adb（shell uid）广播所必需；
+          安全性由"必须人工确认才入库"保证。
+        -->
+        <receiver
+            android:name=".AdbImportReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.norbury.taskalarm.IMPORT" />
+            </intent-filter>
+        </receiver>
+
+        <!-- 桌面小部件：今天的待办。
+             exported 必须为 true：小米桌面对非导出的 widget receiver 枚举不到，
+             添加工具列表里就不显示（系统依旧只允许自己发 APPWIDGET_UPDATE，无安全风险） -->
+        <receiver
+            android:name=".widget.TodayWidget"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/today_widget_info" />
+        </receiver>
+
+        <!-- 组件上的打卡 / 打开 App：非导出，防止任意应用伪造广播改完成状态（v3.34.112） -->
+        <receiver
+            android:name=".widget.WidgetDoneReceiver"
+            android:exported="false" />
+
+        <!-- 响铃前台服务 -->
+        <service
+            android:name=".alarm.RingService"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback" />
+
+        <!-- 外部控制前台服务：保活局域网 HTTP server。
+             specialUse（Android 14+）不受 Android 15 dataSync 的 6 小时/天与开机拉起限制 -->
+        <service
+            android:name=".ControlService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync|specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="local LAN task control server" />
+        </service>
+
+        <meta-data
+            android:name="android.app.shortcuts"
+            android:resource="@xml/shortcuts" />
+    </application>
+</manifest>

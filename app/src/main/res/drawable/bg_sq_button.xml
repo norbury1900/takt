@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 响铃页行尾完成按钮底：圆角方形、卡片色、无描边（2026-11-10 用户要求）。
+     bg_circle_button 是日期弹窗 / 免打扰弹窗共享的圆形底，别共用这一个。 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/app_card" />
+    <corners android:radius="12dp" />
+</shape>

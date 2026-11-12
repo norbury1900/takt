@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 「完成」按钮的底：陶土实心胶囊（与浅色的编辑 / 详情按钮区分） -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="17dp" />
+    <solid android:color="@color/accent" />
+</shape>
