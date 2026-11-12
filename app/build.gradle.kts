@@ -41,7 +41,7 @@ android {
     applicationVariants.all {
         outputs.all {
             (this as com.android.build.gradle.internal.api.BaseVariantOutputImpl)
-                .outputFileName = "TaskAlarm-v${versionName}-${buildType.name}.apk"
+                .outputFileName = "Taktu-v${versionName}-${buildType.name}.apk"
         }
     }
 
