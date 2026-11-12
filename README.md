@@ -156,6 +156,10 @@ app/src/main/java/com/norbury/taskalarm/
     └── HolidayCalendar.kt     Statutory holidays / makeup workdays
 ```
 
+## Support
+
+If Takt saves you some missed reminders, a small donation is appreciated: [Afdian / 爱发电](https://afdian.com/a/norbury). Takt is and stays fully free — donations only fund development.
+
 ## License
 
 Code licensed under the [MIT License](LICENSE). The bundled Zhuque Fangsong font is licensed under the SIL Open Font License 1.1 ([TrionesType/zhuque](https://github.com/TrionesType/zhuque)).

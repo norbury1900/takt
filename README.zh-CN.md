@@ -156,6 +156,10 @@ app/src/main/java/com/norbury/taskalarm/
     └── HolidayCalendar.kt     法定节假日 / 调休数据
 ```
 
+## 支持作者
+
+如果 Takt 帮你省掉过几次漏掉的事，欢迎请作者喝杯奶茶：[爱发电](https://afdian.com/a/norbury)。Takt 会一直免费下去，赞助只用于支持开发。
+
 ## License
 
 代码以 [MIT](LICENSE) 协议开源；内置的朱雀仿宋字体遵循 SIL OFL 1.1（[TrionesType/zhuque](https://github.com/TrionesType/zhuque)）。
