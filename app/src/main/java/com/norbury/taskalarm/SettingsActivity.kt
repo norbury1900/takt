@@ -357,7 +357,7 @@ class SettingsActivity : BaseActivity() {
 
         findViewById<TextView>(R.id.tvRom).text =
             "当前机型：${Permissions.romName()}\n" +
-                    "如遇闹钟不响，请到系统「设置 → 应用管理 → Takt」中开启「自启动」，" +
+                    "如遇闹钟不响，请到系统「设置 → 应用管理 → Taktu」中开启「自启动」，" +
                     "并在最近任务列表里给本应用加锁，防止被清理。"
 
         findViewById<Button>(R.id.btnTest).setOnClickListener {

@@ -292,7 +292,7 @@ object MiLinkBridge {
             put(CalendarContract.Events.TITLE, task.name)
             put(
                 CalendarContract.Events.DESCRIPTION,
-                "来自「Takt」\n目标：${if (task.targetCount > 0) "${task.targetCount} 次" else "打勾完成"}"
+                "来自「Taktu」\n目标：${if (task.targetCount > 0) "${task.targetCount} 次" else "打勾完成"}"
             )
             put(CalendarContract.Events.DTSTART, start)
             put(CalendarContract.Events.DTEND, end)
@@ -358,7 +358,7 @@ object MiLinkBridge {
             put(CalendarContract.Events.TITLE, task.name)
             put(
                 CalendarContract.Events.DESCRIPTION,
-                "来自「Takt」\n目标：${if (task.targetCount > 0) "${task.targetCount} 次" else "打勾完成"}"
+                "来自「Taktu」\n目标：${if (task.targetCount > 0) "${task.targetCount} 次" else "打勾完成"}"
             )
             put(CalendarContract.Events.DTSTART, start)
             put(CalendarContract.Events.DTEND, end)

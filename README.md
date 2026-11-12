@@ -1,6 +1,19 @@
-# Taktu
-
-**English | [简体中文](README.zh-CN.md)**
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./docs/assets/taktu-logo-dark.svg">
+    <img src="./docs/assets/taktu-logo.svg" alt="Taktu logo" width="480">
+  </picture>
+</p>
+<p align="center">
+  <a href="https://github.com/norbury1900/taktu/stargazers"><img src="https://img.shields.io/github/stars/norbury1900/taktu?logo=github&label=stars" alt="GitHub stars"></a>
+  <a href="https://github.com/norbury1900/taktu/releases"><img src="https://img.shields.io/github/v/release/norbury1900/taktu" alt="release"></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/github/license/norbury1900/taktu" alt="license"></a>
+  <a href="./README.md"><img src="https://img.shields.io/badge/Android-8.0%2B-3DDC84?logo=android&logoColor=white" alt="Android 8.0+"></a>
+</p>
+<p align="center">
+  <a href="./README.md">English</a> |
+  <a href="./README.zh-CN.md">简体中文</a>
+</p>
 
 > An Android task reminder that stays silent — unless you really haven't done it.
 
