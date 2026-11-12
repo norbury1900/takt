@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 启动图标前景：时间轴三点，末位为勾（2026-11-12 用户选定方案 C）。
+     黑底独立配色（不沿用应用内主题色）：白线白点 + 绿色完成点。
+     画布 108dp，内容半径 ≤30.5dp，在 66dp 安全区内。
+     注意：勾是画在完成点上的黑线，不是真挖空——背景色一变就会穿帮。 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- 时间轴横线 -->
+    <path
+        android:pathData="M30,54 L78,54"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3.2"
+        android:strokeLineCap="round" />
+    <!-- 已过点 1 / 2：白色 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M33,54 m-5.5,0 a5.5,5.5 0 1,1 11,0 a5.5,5.5 0 1,1 -11,0" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,54 m-5.5,0 a5.5,5.5 0 1,1 11,0 a5.5,5.5 0 1,1 -11,0" />
+    <!-- 末位完成点：绿色 + 黑勾 -->
+    <path
+        android:fillColor="#3DDC84"
+        android:pathData="M75,54 m-9.5,0 a9.5,9.5 0 1,1 19,0 a9.5,9.5 0 1,1 -19,0" />
+    <path
+        android:pathData="M71,54.3 L74,57.3 L79,51.3"
+        android:strokeColor="#000000"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 单色层（Android 13+ 主题图标）：同一构图的剪影，无配色细节。
+     勾不能画黑线挖空（单色层只看 alpha，黑线会变成实心一部分），留整点即可。 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:pathData="M30,54 L78,54"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3.2"
+        android:strokeLineCap="round" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M33,54 m-5.5,0 a5.5,5.5 0 1,1 11,0 a5.5,5.5 0 1,1 -11,0" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,54 m-5.5,0 a5.5,5.5 0 1,1 11,0 a5.5,5.5 0 1,1 -11,0" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M75,54 m-9.5,0 a9.5,9.5 0 1,1 19,0 a9.5,9.5 0 1,1 -19,0" />
+</vector>
