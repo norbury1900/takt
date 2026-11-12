@@ -64,7 +64,7 @@ class ControlServer(context: Context) : NanoHTTPD("0.0.0.0", PORT) {
             // foreground：PC 端据此知道推送预览是"直接弹窗"还是"发通知等点按"
             return json(
                 Response.Status.OK,
-                """{"ok":true,"app":"TaskAlarm","version":"${appVersionName()}","foreground":${TaskAlarmApp.isForeground}}"""
+                """{"ok":true,"app":"Taktu","version":"${appVersionName()}","foreground":${TaskAlarmApp.isForeground}}"""
             )
         }
 

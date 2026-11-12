@@ -15,11 +15,13 @@
   <a href="./README.zh-CN.md">简体中文</a>
 </p>
 
-> An Android reminder app your AI agent can schedule tasks into — it stays silent unless you really haven't done it.
+> An Android reminder app that your PC-side AI fills with tasks — and it stays silent unless you really haven't done them.
 
-A regular alarm fires at the set time, no matter what. Taktu works the opposite way: **at the reminder time it first checks whether you've actually done the task. Done — it stays silent. Not done — it rings.** Then it re-checks at the follow-up time. It is an *execution* reminder, not a *logging* habit tracker — the goal is getting things actually done.
+Other reminder apps make you type every task by hand. Taktu hands that step to your AI: Claude Code, WorkBuddy, or anything that can send HTTP reads your conversations, local data and research results on the computer, and schedules the to-dos straight into the app — you just confirm once on the phone. Manual entry still works, but it's the fallback.
 
-Example: set "Hanging leg raises × 60", deadline 20:00, prompt 30 minutes early, re-check 2 hours later. At 19:30 Taktu checks once — done, silence; not done, it rings. At 22:00 it re-checks, and rings again if you still haven't.
+The logic at ring time is inverted too: a regular alarm fires no matter what. Taktu **first checks whether you've actually done the task — done, silence; not done, it rings**, then re-checks later. It is an *execution* reminder, not a *logging* habit tracker — the goal is getting things actually done.
+
+Example: after planning your day with an AI, it reads your calendar and research, and pushes "Hanging leg raises × 60, deadline 20:00, prompt 30 minutes early, re-check 2 hours later" into the app. At 19:30 Taktu checks — done, silence; not done, it rings. At 22:00 it re-checks, and rings again if you still haven't.
 
 ## Works with AI agents
 

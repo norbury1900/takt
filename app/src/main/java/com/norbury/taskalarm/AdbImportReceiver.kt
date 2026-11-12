@@ -11,9 +11,9 @@ import com.norbury.taskalarm.util.ImportLauncher
  * 外部（PC 上的 AI / 脚本）通过 adb 触发导入的入口。
  *
  * PC 端用法（两种等价，二选一）：
- *   adb shell am broadcast -n com.norbury.takt/.AdbImportReceiver \
+ *   adb shell am broadcast -n com.norbury.taktu/.AdbImportReceiver \
  *       -a com.norbury.taskalarm.IMPORT --es b64  <plan.json 的 base64> --es token <X-Token>
- *   adb shell am broadcast -n com.norbury.takt/.AdbImportReceiver \
+ *   adb shell am broadcast -n com.norbury.taktu/.AdbImportReceiver \
  *       -a com.norbury.taskalarm.IMPORT --es json <原始 JSON 文本> --es token <X-Token>
  *
  * base64 形式推荐：无 shell 转义问题。收到后**不直接写库**——

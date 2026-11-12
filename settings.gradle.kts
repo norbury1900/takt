@@ -18,5 +18,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "TaskAlarm"
+rootProject.name = "Taktu"
 include(":app")
