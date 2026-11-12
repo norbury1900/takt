@@ -35,7 +35,7 @@ curl -s -X POST -H "X-Token: $TOKEN" -H "Content-Type: application/json" \
 | 系统 | **Android 8.0 及以上**（minSdk 26） |
 | 实测机型 | **小米 15（HyperOS 2 / Android 15）**——目前唯一实测机型 |
 | 其他机型 | 理论可用，但各家 ROM 后台策略差异大，未验证 |
-| 存储 | APK 约 30 MB；所有数据留在本机 |
+| 存储 | APK 约 10 MB；所有数据留在本机 |
 
 ## 核心特性
 

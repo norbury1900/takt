@@ -35,7 +35,7 @@ Typical flows: "把这些加进我的训练计划" mid-conversation and the plan
 | OS | **Android 8.0 or later** (minSdk 26) |
 | Tested device | **Xiaomi 15 (HyperOS 2 / Android 15)** — the only device tested so far |
 | Other devices | Should work, but ROM-level background policies vary widely; not verified |
-| Storage | APK ~30 MB; all data stays on device |
+| Storage | APK ~10 MB; all data stays on device |
 
 ## Features
 
