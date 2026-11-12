@@ -6,8 +6,8 @@
         android:icon="@mipmap/ic_launcher"
         android:shortcutShortLabel="@string/btn_new_task">
         <intent
-            android:action="com.norbury.taskalarm.NEW_TASK"
-            android:targetClass="com.norbury.taskalarm.TaskEditActivity"
-            android:targetPackage="com.norbury.taskalarm" />
+            android:action="com.norbury.taktu.NEW_TASK"
+            android:targetClass="com.norbury.taktu.TaskEditActivity"
+            android:targetPackage="com.norbury.taktu" />
     </shortcut>
 </shortcuts>

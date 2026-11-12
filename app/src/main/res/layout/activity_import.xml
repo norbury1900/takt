@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/import_title"
-                android:textAppearance="@style/Text.TaskAlarm.Headline"
+                android:textAppearance="@style/Text.Taktu.Headline"
                 android:textSize="22sp"
                 android:textColor="?attr/colorOnSurface" />
 
@@ -86,7 +86,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/import_src_file"
-                        android:textAppearance="@style/Text.TaskAlarm.Title"
+                        android:textAppearance="@style/Text.Taktu.Title"
                         android:textSize="15sp"
                         android:textColor="?attr/colorOnSurface" />
 
@@ -101,7 +101,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnPickFile"
-                        style="@style/Widget.TaskAlarm.Button.Outlined"
+                        style="@style/Widget.Taktu.Button.Outlined"
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
                         android:layout_marginTop="12dp"
@@ -135,7 +135,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/import_export"
-                        android:textAppearance="@style/Text.TaskAlarm.Title"
+                        android:textAppearance="@style/Text.Taktu.Title"
                         android:textSize="15sp"
                         android:textColor="?attr/colorOnSurface" />
 
@@ -150,7 +150,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnExport"
-                        style="@style/Widget.TaskAlarm.Button.Outlined"
+                        style="@style/Widget.Taktu.Button.Outlined"
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
                         android:layout_marginTop="12dp"
@@ -183,7 +183,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/import_src_paste"
-                        android:textAppearance="@style/Text.TaskAlarm.Title"
+                        android:textAppearance="@style/Text.Taktu.Title"
                         android:textSize="15sp"
                         android:textColor="?attr/colorOnSurface" />
 
@@ -229,7 +229,7 @@
 
                         <Button
                             android:id="@+id/btnPasteClip"
-                            style="@style/Widget.TaskAlarm.Button.Text"
+                            style="@style/Widget.Taktu.Button.Text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/import_paste_clip"
@@ -237,7 +237,7 @@
 
                         <Button
                             android:id="@+id/btnShowFormat"
-                            style="@style/Widget.TaskAlarm.Button.Text"
+                            style="@style/Widget.Taktu.Button.Text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
@@ -269,7 +269,7 @@
                         android:id="@+id/tvSummary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="@style/Text.TaskAlarm.Title"
+                        android:textAppearance="@style/Text.Taktu.Title"
                         android:textSize="15sp"
                         android:textColor="?attr/colorOnSecondaryContainer" />
 

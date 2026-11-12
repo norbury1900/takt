@@ -38,7 +38,7 @@
                 android:fontFamily="serif"
                 android:letterSpacing="0.08"
                 android:text="@string/app_title"
-                android:textAppearance="@style/Text.TaskAlarm.Display"
+                android:textAppearance="@style/Text.Taktu.Display"
                 android:textColor="?attr/colorOnSurface" />
         </LinearLayout>
 
@@ -181,7 +181,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
                 android:text="@string/empty_title"
-                android:textAppearance="@style/Text.TaskAlarm.Display"
+                android:textAppearance="@style/Text.Taktu.Display"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="21sp" />
 

@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Stats"
-            android:textAppearance="@style/Text.TaskAlarm.Headline"
+            android:textAppearance="@style/Text.Taktu.Headline"
             android:textColor="?attr/colorOnSurface" />
     </LinearLayout>
 
@@ -286,7 +286,7 @@
                         android:textSize="12.5sp"
                         android:textColor="#FF6B6B6B" />
 
-                    <com.norbury.taskalarm.util.HeatmapView
+                    <com.norbury.taktu.util.HeatmapView
                         android:id="@+id/heatmap"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

@@ -37,7 +37,7 @@
                 android:id="@+id/tvTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/Text.TaskAlarm.Title"
+                android:textAppearance="@style/Text.Taktu.Title"
                 android:textColor="?attr/colorOnSurface" />
 
             <TextView
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:lineSpacingMultiplier="1.5"
-                android:textAppearance="@style/Text.TaskAlarm.Meta"
+                android:textAppearance="@style/Text.Taktu.Meta"
                 android:textColor="?attr/colorOnSurfaceVariant" />
         </LinearLayout>
 
@@ -55,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:textAppearance="@style/Text.TaskAlarm.Label"
+            android:textAppearance="@style/Text.Taktu.Label"
             android:textColor="?attr/colorPrimary" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

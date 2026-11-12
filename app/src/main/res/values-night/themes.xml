@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!--
-      深色主题不需要单独定义 Base.Theme.TaskAlarm：
+      深色主题不需要单独定义 Base.Theme.Taktu：
       主题里的颜色全部指向 @color/xxx，深色值由 values-night/colors.xml 覆盖，
       资源解析器会自动取到深色那一套。
       这里只保留需要显式区分明暗的属性。

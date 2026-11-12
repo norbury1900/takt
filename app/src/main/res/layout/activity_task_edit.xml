@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/edit_new"
-                android:textAppearance="@style/Text.TaskAlarm.Headline"
+                android:textAppearance="@style/Text.Taktu.Headline"
                 android:textColor="?attr/colorOnSurface" />
         </LinearLayout>
 
@@ -78,7 +78,7 @@
                     android:maxLines="1"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:textAppearance="@style/Text.TaskAlarm.Body"
+                    android:textAppearance="@style/Text.Taktu.Body"
                     android:textColor="?attr/colorOnSurface"
                     android:textColorHint="?attr/colorOnSurfaceVariant" />
 
@@ -99,7 +99,7 @@
                     android:maxLines="1"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:textAppearance="@style/Text.TaskAlarm.Body"
+                    android:textAppearance="@style/Text.Taktu.Body"
                     android:textColor="?attr/colorOnSurface"
                     android:textColorHint="?attr/colorOnSurfaceVariant" />
 
@@ -120,7 +120,7 @@
                     android:maxLines="1"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:textAppearance="@style/Text.TaskAlarm.Body"
+                    android:textAppearance="@style/Text.Taktu.Body"
                     android:textColor="?attr/colorOnSurface"
                     android:textColorHint="?attr/colorOnSurfaceVariant" />
 
@@ -146,12 +146,12 @@
                 -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnTagPick"
-                    style="@style/Widget.TaskAlarm.Button.Outlined"
+                    style="@style/Widget.Taktu.Button.Outlined"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
                     android:layout_marginTop="10dp"
                     android:text="@string/group_untagged"
-                    android:textAppearance="@style/Text.TaskAlarm.Title"
+                    android:textAppearance="@style/Text.Taktu.Title"
                     app:cornerRadius="10dp"
                     app:icon="@drawable/ic_expand_more"
                     app:iconGravity="textEnd" />
@@ -209,7 +209,7 @@
                     android:paddingTop="12dp"
                     android:paddingEnd="16dp"
                     android:paddingBottom="12dp"
-                    android:textAppearance="@style/Text.TaskAlarm.Body"
+                    android:textAppearance="@style/Text.Taktu.Body"
                     android:textColor="?attr/colorOnSurface"
                     android:textColorHint="?attr/colorOnSurfaceVariant" />
 
@@ -241,13 +241,13 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnDeadline"
-                        style="@style/Widget.TaskAlarm.Button.Outlined"
+                        style="@style/Widget.Taktu.Button.Outlined"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
                         android:layout_marginTop="10dp"
                         android:gravity="center_vertical"
                         android:text="20:00"
-                        android:textAppearance="@style/Text.TaskAlarm.Headline"
+                        android:textAppearance="@style/Text.Taktu.Headline"
                         app:cornerRadius="10dp"
                         app:icon="@drawable/ic_clock"
                         app:iconGravity="start"
@@ -271,7 +271,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnRestDayDeadline"
-                        style="@style/Widget.TaskAlarm.Button.Outlined"
+                        style="@style/Widget.Taktu.Button.Outlined"
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
                         android:layout_marginTop="8dp"
@@ -439,7 +439,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnPreOffset"
-                        style="@style/Widget.TaskAlarm.Button.Outlined"
+                        style="@style/Widget.Taktu.Button.Outlined"
                         android:layout_width="0dp"
                         android:layout_height="52dp"
                         android:layout_weight="1"
@@ -448,7 +448,7 @@
                         android:insetBottom="0dp"
                         android:paddingStart="16dp"
                         android:text="@string/chip_off"
-                        android:textAppearance="@style/Text.TaskAlarm.Title"
+                        android:textAppearance="@style/Text.Taktu.Title"
                         app:cornerRadius="10dp" />
                 </LinearLayout>
 
@@ -469,7 +469,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnPostOffset"
-                        style="@style/Widget.TaskAlarm.Button.Outlined"
+                        style="@style/Widget.Taktu.Button.Outlined"
                         android:layout_width="0dp"
                         android:layout_height="52dp"
                         android:layout_weight="1"
@@ -478,7 +478,7 @@
                         android:insetBottom="0dp"
                         android:paddingStart="16dp"
                         android:text="@string/chip_off"
-                        android:textAppearance="@style/Text.TaskAlarm.Title"
+                        android:textAppearance="@style/Text.Taktu.Title"
                         app:cornerRadius="10dp" />
                 </LinearLayout>
 
@@ -511,14 +511,14 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnApplyAllOffsets"
-                        style="@style/Widget.TaskAlarm.Button.Outlined"
+                        style="@style/Widget.Taktu.Button.Outlined"
                         android:layout_width="match_parent"
                         android:layout_height="44dp"
                         android:layout_marginTop="8dp"
                         android:insetTop="0dp"
                         android:insetBottom="0dp"
                         android:text="@string/btn_apply_all_offsets"
-                        android:textAppearance="@style/Text.TaskAlarm.Title"
+                        android:textAppearance="@style/Text.Taktu.Title"
                         app:cornerRadius="10dp" />
                 </LinearLayout>
 
@@ -537,7 +537,7 @@
                     android:background="@drawable/bg_note"
                     android:lineSpacingMultiplier="1.7"
                     android:padding="16dp"
-                    android:textAppearance="@style/Text.TaskAlarm.Meta"
+                    android:textAppearance="@style/Text.Taktu.Meta"
                     android:textColor="?attr/colorOnSecondaryContainer" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -589,12 +589,12 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnStartDate"
-                    style="@style/Widget.TaskAlarm.Button.Outlined"
+                    style="@style/Widget.Taktu.Button.Outlined"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
                     android:layout_marginTop="10dp"
                     android:text="@string/date_unset"
-                    android:textAppearance="@style/Text.TaskAlarm.Title"
+                    android:textAppearance="@style/Text.Taktu.Title"
                     app:cornerRadius="10dp"
                     app:icon="@drawable/ic_calendar"
                     app:iconGravity="textStart"
@@ -617,12 +617,12 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnEndDate"
-                        style="@style/Widget.TaskAlarm.Button.Outlined"
+                        style="@style/Widget.Taktu.Button.Outlined"
                         android:layout_width="0dp"
                         android:layout_height="52dp"
                         android:layout_weight="1"
                         android:text="@string/date_never"
-                        android:textAppearance="@style/Text.TaskAlarm.Title"
+                        android:textAppearance="@style/Text.Taktu.Title"
                         app:cornerRadius="10dp"
                         app:icon="@drawable/ic_calendar"
                         app:iconGravity="textStart"
@@ -630,7 +630,7 @@
 
                     <Button
                         android:id="@+id/btnEndDateClear"
-                        style="@style/Widget.TaskAlarm.Button.Text"
+                        style="@style/Widget.Taktu.Button.Text"
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:layout_marginStart="6dp"
@@ -789,7 +789,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnIntervalAmount"
-                        style="@style/Widget.TaskAlarm.Button.Outlined"
+                        style="@style/Widget.Taktu.Button.Outlined"
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
                         android:gravity="start|center_vertical"
@@ -797,7 +797,7 @@
                         android:insetBottom="0dp"
                         android:paddingStart="16dp"
                         android:text="@string/interval_days_fmt"
-                        android:textAppearance="@style/Text.TaskAlarm.Title"
+                        android:textAppearance="@style/Text.Taktu.Title"
                         app:cornerRadius="10dp" />
                 </LinearLayout>
 
@@ -806,7 +806,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:textAppearance="@style/Text.TaskAlarm.Meta"
+                    android:textAppearance="@style/Text.Taktu.Meta"
                     android:textColor="?attr/colorOnSurfaceVariant" />
 
                 <!-- 法定节假日 / 调休 -->
@@ -827,7 +827,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/f_skip_holidays"
-                            android:textAppearance="@style/Text.TaskAlarm.Title"
+                            android:textAppearance="@style/Text.Taktu.Title"
                             android:textColor="?attr/colorOnSurface" />
 
                         <TextView
@@ -836,7 +836,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="3dp"
                             android:lineSpacingMultiplier="1.4"
-                            android:textAppearance="@style/Text.TaskAlarm.Meta"
+                            android:textAppearance="@style/Text.Taktu.Meta"
                             android:textColor="?attr/colorOnSurfaceVariant" />
                     </LinearLayout>
 
@@ -885,7 +885,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:text="@string/link_title"
-                        android:textAppearance="@style/Text.TaskAlarm.Title"
+                        android:textAppearance="@style/Text.Taktu.Title"
                         android:textColor="?attr/colorOnSurface" />
                 </LinearLayout>
 
@@ -895,7 +895,7 @@
                     android:layout_marginTop="8dp"
                     android:lineSpacingMultiplier="1.5"
                     android:text="@string/link_intro"
-                    android:textAppearance="@style/Text.TaskAlarm.Meta"
+                    android:textAppearance="@style/Text.Taktu.Meta"
                     android:textColor="?attr/colorOnSurfaceVariant" />
 
                 <!-- 时钟 -->
@@ -924,7 +924,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/link_clock"
-                            android:textAppearance="@style/Text.TaskAlarm.Title"
+                            android:textAppearance="@style/Text.Taktu.Title"
                             android:textColor="?attr/colorOnSurface" />
 
                         <TextView
@@ -933,7 +933,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="3dp"
                             android:text="@string/link_clock_desc"
-                            android:textAppearance="@style/Text.TaskAlarm.Meta"
+                            android:textAppearance="@style/Text.Taktu.Meta"
                             android:textColor="?attr/colorOnSurfaceVariant" />
                     </LinearLayout>
 
@@ -970,7 +970,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/link_calendar"
-                            android:textAppearance="@style/Text.TaskAlarm.Title"
+                            android:textAppearance="@style/Text.Taktu.Title"
                             android:textColor="?attr/colorOnSurface" />
 
                         <TextView
@@ -979,7 +979,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="3dp"
                             android:text="@string/link_calendar_desc"
-                            android:textAppearance="@style/Text.TaskAlarm.Meta"
+                            android:textAppearance="@style/Text.Taktu.Meta"
                             android:textColor="?attr/colorOnSurfaceVariant" />
                     </LinearLayout>
 
@@ -998,7 +998,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnOpenClock"
-                        style="@style/Widget.TaskAlarm.Button.Tonal"
+                        style="@style/Widget.Taktu.Button.Tonal"
                         android:layout_width="0dp"
                         android:layout_height="46dp"
                         android:layout_weight="1"
@@ -1008,7 +1008,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnOpenCalendar"
-                        style="@style/Widget.TaskAlarm.Button.Tonal"
+                        style="@style/Widget.Taktu.Button.Tonal"
                         android:layout_width="0dp"
                         android:layout_height="46dp"
                         android:layout_marginStart="10dp"
@@ -1024,7 +1024,7 @@
                     android:layout_marginTop="14dp"
                     android:lineSpacingMultiplier="1.5"
                     android:text="@string/link_note"
-                    android:textAppearance="@style/Text.TaskAlarm.Meta"
+                    android:textAppearance="@style/Text.Taktu.Meta"
                     android:textColor="?attr/colorOnSurfaceVariant" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -1047,7 +1047,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnDelete"
-            style="@style/Widget.TaskAlarm.Button.Text"
+            style="@style/Widget.Taktu.Button.Text"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginStart="16dp"

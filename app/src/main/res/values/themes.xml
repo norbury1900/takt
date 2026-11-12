@@ -6,7 +6,7 @@
       配色只有一套（象牙米白 + 陶土橘），深色值由 values-night/colors.xml 覆盖，
       因此「浅色 / 深色」两个主题共用这个主题定义，靠 AppCompatDelegate 切换明暗即可。
     -->
-    <style name="Base.Theme.TaskAlarm" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.Taktu" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
@@ -58,23 +58,23 @@
 
         <item name="android:windowBackground">@drawable/bg_window</item>
 
-        <!-- 页面转场：新页上浮淡入、旧页淡出（WindowAnim.TaskAlarm，借 M3 emphasized easing 的手感） -->
-        <item name="android:windowAnimationStyle">@style/WindowAnim.TaskAlarm</item>
+        <!-- 页面转场：新页上浮淡入、旧页淡出（WindowAnim.Taktu，借 M3 emphasized easing 的手感） -->
+        <item name="android:windowAnimationStyle">@style/WindowAnim.Taktu</item>
 
         <!-- Android 12+ 系统级毛玻璃：弹窗背后做真实模糊 -->
         <item name="android:windowBlurBehindEnabled" tools:targetApi="31">true</item>
         <item name="android:windowBackgroundBlurRadius" tools:targetApi="31">24dp</item>
 
-        <item name="alertDialogTheme">@style/ThemeOverlay.TaskAlarm.Dialog</item>
-        <item name="materialAlertDialogTheme">@style/ThemeOverlay.TaskAlarm.Dialog</item>
+        <item name="alertDialogTheme">@style/ThemeOverlay.Taktu.Dialog</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.Taktu.Dialog</item>
         <!--
           日期 / 时间选择改成自定义底部弹窗（TimeSheet / DateSheet）。
           BottomSheetDialog 会从所在主题解析 bottomSheetDialogTheme，
           这里指向本应用 overlay —— 否则弹窗还是 Material 默认白底，与米白界面割裂。
         -->
-        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.TaskAlarm.BottomSheet</item>
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.Taktu.BottomSheet</item>
         <!-- 没写 style 的按钮（保存、打开小米时钟等）统一小圆角 + 文字居中 -->
-        <item name="materialButtonStyle">@style/Widget.TaskAlarm.Button</item>
+        <item name="materialButtonStyle">@style/Widget.Taktu.Button</item>
         <!--
           兜底一：普通 TextView 只写 textSize、没挂 textAppearance 时，
           走 textViewStyle 默认样式 —— 这里强制默认字体为朱雀仿宋，
@@ -82,14 +82,14 @@
           已显式指定 textAppearance / fontFamily 的（15 档 TA.Serif、
           +/- 按钮的 sans-serif）不受影响，优先级更高。
         -->
-        <item name="android:textViewStyle">@style/Widget.TaskAlarm.TextView</item>
-        <item name="android:editTextStyle">@style/Widget.TaskAlarm.EditText</item>
+        <item name="android:textViewStyle">@style/Widget.Taktu.TextView</item>
+        <item name="android:editTextStyle">@style/Widget.Taktu.EditText</item>
     </style>
 
-    <style name="Theme.TaskAlarm" parent="Base.Theme.TaskAlarm" />
+    <style name="Theme.Taktu" parent="Base.Theme.Taktu" />
 
     <!-- 全局 Activity 转场（anim/ta_*）：开=上浮淡入，关=下沉淡出，时长 ≤230ms 不拖沓 -->
-    <style name="WindowAnim.TaskAlarm" parent="">
+    <style name="WindowAnim.Taktu" parent="">
         <item name="android:activityOpenEnterAnimation">@anim/ta_open_enter</item>
         <item name="android:activityOpenExitAnimation">@anim/ta_open_exit</item>
         <item name="android:activityCloseEnterAnimation">@anim/ta_close_enter</item>
@@ -101,17 +101,17 @@
     </style>
 
     <!-- 弹窗：真实背景模糊 + 更低的压暗 -->
-    <style name="ThemeOverlay.TaskAlarm.Dialog" parent="ThemeOverlay.Material3.Dialog.Alert">
+    <style name="ThemeOverlay.Taktu.Dialog" parent="ThemeOverlay.Material3.Dialog.Alert">
         <item name="android:windowBlurBehindEnabled" tools:targetApi="31">true</item>
         <item name="android:windowBackgroundBlurRadius" tools:targetApi="31">28dp</item>
         <item name="android:backgroundDimAmount">0.28</item>
         <!--
-          对话框 window 的 context 用的是这个 overlay，**不继承 Base.Theme.TaskAlarm**，
+          对话框 window 的 context 用的是这个 overlay，**不继承 Base.Theme.Taktu**，
           所以主主题里的字体兜底在这里全部失效，必须重复挂一遍：
-          标题/消息走 15 档 TA.Serif，按钮走 Widget.TaskAlarm.Button，纯文字走 textViewStyle。
+          标题/消息走 15 档 TA.Serif，按钮走 Widget.Taktu.Button，纯文字走 textViewStyle。
         -->
-        <item name="android:textViewStyle">@style/Widget.TaskAlarm.TextView</item>
-        <item name="materialButtonStyle">@style/Widget.TaskAlarm.Button</item>
+        <item name="android:textViewStyle">@style/Widget.Taktu.TextView</item>
+        <item name="materialButtonStyle">@style/Widget.Taktu.Button</item>
         <item name="textAppearanceDisplayLarge">@style/TA.Serif.DisplayLarge</item>
         <item name="textAppearanceDisplayMedium">@style/TA.Serif.DisplayMedium</item>
         <item name="textAppearanceDisplaySmall">@style/TA.Serif.DisplaySmall</item>
@@ -132,13 +132,13 @@
     <!--
       底部弹窗（日期 / 时间选择器）：圆角只在顶部，底色用暖白卡片色，
       拖拽把手与背景都跟随主题（values-night 自动换色）。
-      注意：这个 overlay 不继承 Base.Theme.TaskAlarm，字体兜底必须重复挂一遍
-      （同 ThemeOverlay.TaskAlarm.Dialog 的道理），否则弹窗里的文字会漏成黑体。
+      注意：这个 overlay 不继承 Base.Theme.Taktu，字体兜底必须重复挂一遍
+      （同 ThemeOverlay.Taktu.Dialog 的道理），否则弹窗里的文字会漏成黑体。
     -->
-    <style name="ThemeOverlay.TaskAlarm.BottomSheet" parent="ThemeOverlay.Material3.BottomSheetDialog">
-        <item name="android:textViewStyle">@style/Widget.TaskAlarm.TextView</item>
-        <item name="android:editTextStyle">@style/Widget.TaskAlarm.EditText</item>
-        <item name="materialButtonStyle">@style/Widget.TaskAlarm.Button</item>
+    <style name="ThemeOverlay.Taktu.BottomSheet" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="android:textViewStyle">@style/Widget.Taktu.TextView</item>
+        <item name="android:editTextStyle">@style/Widget.Taktu.EditText</item>
+        <item name="materialButtonStyle">@style/Widget.Taktu.Button</item>
         <item name="textAppearanceDisplayLarge">@style/TA.Serif.DisplayLarge</item>
         <item name="textAppearanceDisplayMedium">@style/TA.Serif.DisplayMedium</item>
         <item name="textAppearanceDisplaySmall">@style/TA.Serif.DisplaySmall</item>
@@ -154,17 +154,17 @@
         <item name="textAppearanceLabelLarge">@style/TA.Serif.LabelLarge</item>
         <item name="textAppearanceLabelMedium">@style/TA.Serif.LabelMedium</item>
         <item name="textAppearanceLabelSmall">@style/TA.Serif.LabelSmall</item>
-        <item name="bottomSheetStyle">@style/Widget.TaskAlarm.BottomSheet.Modal</item>
+        <item name="bottomSheetStyle">@style/Widget.Taktu.BottomSheet.Modal</item>
     </style>
 
-    <style name="Widget.TaskAlarm.BottomSheet.Modal" parent="Widget.Material3.BottomSheet.Modal">
+    <style name="Widget.Taktu.BottomSheet.Modal" parent="Widget.Material3.BottomSheet.Modal">
         <!-- 底色走 app_card（暖白），深色主题下自动变深灰卡片色 -->
         <item name="backgroundTint">@color/app_card</item>
-        <item name="shapeAppearance">@style/ShapeAppearance.TaskAlarm.BottomSheet</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.Taktu.BottomSheet</item>
     </style>
 
     <!-- 24dp 顶部圆角、底部直角：贴住屏幕底边，像从页面里抽出来的一张卡 -->
-    <style name="ShapeAppearance.TaskAlarm.BottomSheet" parent="">
+    <style name="ShapeAppearance.Taktu.BottomSheet" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopLeft">24dp</item>
         <item name="cornerSizeTopRight">24dp</item>
@@ -173,7 +173,7 @@
     </style>
 
     <!-- 弹窗里的快捷选项 chip：小圆角描边钮，与全局 10dp 圆角语言一致 -->
-    <style name="Widget.TaskAlarm.Button.ChipSmall" parent="Widget.TaskAlarm.Button.Outlined">
+    <style name="Widget.Taktu.Button.ChipSmall" parent="Widget.Taktu.Button.Outlined">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">36dp</item>
         <item name="android:layout_marginEnd">8dp</item>
@@ -194,16 +194,16 @@
       没法直接传样式资源，所以包一层 ContextThemeWrapper，把 materialButtonStyle
       指向对应变体。父主题的配色（colorPrimary 等）透过 wrapper 继续生效。
     -->
-    <style name="ThemeOverlay.TaskAlarm.SheetButtonText" parent="">
-        <item name="materialButtonStyle">@style/Widget.TaskAlarm.Button.Text</item>
+    <style name="ThemeOverlay.Taktu.SheetButtonText" parent="">
+        <item name="materialButtonStyle">@style/Widget.Taktu.Button.Text</item>
     </style>
 
-    <style name="ThemeOverlay.TaskAlarm.SheetButtonOutlined" parent="">
-        <item name="materialButtonStyle">@style/Widget.TaskAlarm.Button.Outlined</item>
+    <style name="ThemeOverlay.Taktu.SheetButtonOutlined" parent="">
+        <item name="materialButtonStyle">@style/Widget.Taktu.Button.Outlined</item>
     </style>
 
-    <style name="ThemeOverlay.TaskAlarm.SheetButtonChip" parent="">
-        <item name="materialButtonStyle">@style/Widget.TaskAlarm.Button.ChipSmall</item>
+    <style name="ThemeOverlay.Taktu.SheetButtonChip" parent="">
+        <item name="materialButtonStyle">@style/Widget.Taktu.Button.ChipSmall</item>
     </style>
 
     <!--
@@ -211,9 +211,9 @@
       以前这里固定 Theme.Material3.Dark，导致两个问题：
         1. 选浅色主题时，响铃页突然蹦出一个黑底页面；
         2. 固定 Dark 主题没继承我们的配色，按钮就变成了 Material 默认的紫色。
-      现在继承 Base.Theme.TaskAlarm —— 颜色、明暗都跟着主界面走。
+      现在继承 Base.Theme.Taktu —— 颜色、明暗都跟着主界面走。
     -->
-    <style name="Theme.TaskAlarm.Ring" parent="Base.Theme.TaskAlarm">
+    <style name="Theme.Taktu.Ring" parent="Base.Theme.Taktu">
         <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
@@ -226,7 +226,7 @@
       注意：Android 的 android:fontFamily="serif" **只对拉丁字符生效**，
       中文会 fallback 到系统黑体 —— 所以必须自带中文字体文件才能真的看到宋体/仿宋效果。
     -->
-    <style name="Text.TaskAlarm.Display" parent="TextAppearance.Material3.HeadlineMedium">
+    <style name="Text.Taktu.Display" parent="TextAppearance.Material3.HeadlineMedium">
         <item name="android:fontFamily">@font/zhuque_fangsong</item>
         <item name="android:textSize">27sp</item>
         <item name="android:textStyle">normal</item>
@@ -234,34 +234,34 @@
         <item name="android:includeFontPadding">false</item>
     </style>
 
-    <style name="Text.TaskAlarm.Headline" parent="TextAppearance.Material3.HeadlineSmall">
+    <style name="Text.Taktu.Headline" parent="TextAppearance.Material3.HeadlineSmall">
         <item name="android:fontFamily">@font/zhuque_fangsong</item>
         <item name="android:textStyle">normal</item>
         <item name="android:letterSpacing">0</item>
     </style>
 
-    <style name="Text.TaskAlarm.Title" parent="TextAppearance.Material3.TitleMedium">
+    <style name="Text.Taktu.Title" parent="TextAppearance.Material3.TitleMedium">
         <item name="android:fontFamily">@font/zhuque_fangsong</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="Text.TaskAlarm.Body" parent="TextAppearance.Material3.BodyMedium">
+    <style name="Text.Taktu.Body" parent="TextAppearance.Material3.BodyMedium">
         <item name="android:lineSpacingMultiplier">1.4</item>
     </style>
 
-    <style name="Text.TaskAlarm.Label" parent="TextAppearance.Material3.LabelLarge">
+    <style name="Text.Taktu.Label" parent="TextAppearance.Material3.LabelLarge">
         <item name="android:fontFamily">@font/zhuque_fangsong</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="Text.TaskAlarm.Meta" parent="TextAppearance.Material3.BodySmall">
+    <style name="Text.Taktu.Meta" parent="TextAppearance.Material3.BodySmall">
         <item name="android:fontFamily">@font/zhuque_fangsong</item>
         <item name="android:lineSpacingMultiplier">1.5</item>
     </style>
 
     <!-- 卡片标题：无衬线、中等字重，缩到 16sp 更精致 -->
     <!-- 注意：带点的样式名若省略 parent，AAPT2 会把前缀当成隐式父样式去找，必须显式写 parent="" -->
-    <style name="Text.TaskAlarm.CardTitle" parent="">
+    <style name="Text.Taktu.CardTitle" parent="">
         <item name="android:textSize">16sp</item>
         <item name="android:fontFamily">@font/zhuque_fangsong</item>
         <item name="android:textColor">?attr/colorOnSurface</item>
@@ -269,7 +269,7 @@
     </style>
 
     <!-- 卡片副信息：小一号的暖灰 -->
-    <style name="Text.TaskAlarm.CardMeta" parent="">
+    <style name="Text.Taktu.CardMeta" parent="">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
         <item name="android:lineSpacingMultiplier">1.45</item>
@@ -277,7 +277,7 @@
 
     <!-- 字段标题 -->
     <style name="FieldLabel">
-        <item name="android:textAppearance">@style/Text.TaskAlarm.Label</item>
+        <item name="android:textAppearance">@style/Text.Taktu.Label</item>
         <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
     </style>
 
@@ -305,7 +305,7 @@
       真正压住的是 ButtonTuner 在运行时把 firstBaseline/lastBaseline 归零（API 28 属性），
       这里只负责静态度量，两边配合才能既无 lint 风险又真居中。
     -->
-    <style name="Widget.TaskAlarm.Button" parent="Widget.Material3.Button">
+    <style name="Widget.Taktu.Button" parent="Widget.Material3.Button">
         <!-- MaterialButton 对 textAppearance 里的 fontFamily 不可靠，必须直接挂字体 -->
         <item name="android:fontFamily">@font/zhuque_fangsong</item>
         <item name="android:gravity">center</item>
@@ -324,15 +324,15 @@
     </style>
 
     <!-- 同款兜底：显式引用库 OutlinedButton / TonalButton / TextButton 的按钮 -->
-    <style name="Widget.TaskAlarm.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+    <style name="Widget.Taktu.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
         <item name="android:fontFamily">@font/zhuque_fangsong</item>
         <item name="android:textAppearance">@style/TA.Serif.LabelLarge</item>
     </style>
-    <style name="Widget.TaskAlarm.Button.Tonal" parent="Widget.Material3.Button.TonalButton">
+    <style name="Widget.Taktu.Button.Tonal" parent="Widget.Material3.Button.TonalButton">
         <item name="android:fontFamily">@font/zhuque_fangsong</item>
         <item name="android:textAppearance">@style/TA.Serif.LabelLarge</item>
     </style>
-    <style name="Widget.TaskAlarm.Button.Text" parent="Widget.Material3.Button.TextButton">
+    <style name="Widget.Taktu.Button.Text" parent="Widget.Material3.Button.TextButton">
         <item name="android:fontFamily">@font/zhuque_fangsong</item>
         <item name="android:textAppearance">@style/TA.Serif.LabelLarge</item>
     </style>
@@ -344,17 +344,17 @@
       textColor 显式再写一遍：DayNight 下 textColorPrimary 会随明暗切换，
       不写的话极个别定制 Rom 上默认色会漂，深色主题有黑字黑底的风险。
     -->
-    <style name="Widget.TaskAlarm.TextView" parent="@android:style/Widget.TextView">
+    <style name="Widget.Taktu.TextView" parent="@android:style/Widget.TextView">
         <item name="android:fontFamily">@font/zhuque_fangsong</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
 
     <!-- 输入框兜底：任务名 / 备注 / 标签输入框默认走仿宋 -->
-    <style name="Widget.TaskAlarm.EditText" parent="@android:style/Widget.EditText">
+    <style name="Widget.Taktu.EditText" parent="@android:style/Widget.EditText">
         <item name="android:fontFamily">@font/zhuque_fangsong</item>
     </style>
 
-    <style name="Chip" parent="Widget.TaskAlarm.Button.Outlined">
+    <style name="Chip" parent="Widget.Taktu.Button.Outlined">
         <!-- 宋体自带上下留白会让按钮文字看起来偏下，这里去掉并强制居中 -->
         <item name="android:gravity">center</item>
         <item name="android:includeFontPadding">false</item>
@@ -389,7 +389,7 @@
       选中态的淡陶土软底由 Ui.tab() 运行时上，这里只管静态度量；
       不等宽拉伸（无 layout_weight），页签靠左自然排，节奏更像文字导航。
     -->
-    <style name="Widget.TaskAlarm.Tab" parent="Widget.TaskAlarm.Button.Outlined">
+    <style name="Widget.Taktu.Tab" parent="Widget.Taktu.Button.Outlined">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">34dp</item>
         <item name="android:layout_marginEnd">18dp</item>

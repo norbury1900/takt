@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/settings_title"
-                android:textAppearance="@style/Text.TaskAlarm.Headline"
+                android:textAppearance="@style/Text.Taktu.Headline"
                 android:textColor="?attr/colorOnSurface" />
         </LinearLayout>
 
@@ -66,7 +66,7 @@
                 android:layout_weight="1"
                 android:lineSpacingMultiplier="1.5"
                 android:text="@string/settings_intro"
-                android:textAppearance="@style/Text.TaskAlarm.Meta"
+                android:textAppearance="@style/Text.Taktu.Meta"
                 android:textColor="?attr/colorOnSurfaceVariant" />
         </LinearLayout>
 
@@ -158,12 +158,12 @@
                     android:layout_marginTop="8dp"
                     android:lineSpacingMultiplier="1.6"
                     android:text="@string/ring_note"
-                    android:textAppearance="@style/Text.TaskAlarm.Meta"
+                    android:textAppearance="@style/Text.Taktu.Meta"
                     android:textColor="?attr/colorOnSurfaceVariant" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnAppSettings"
-                    style="@style/Widget.TaskAlarm.Button.Outlined"
+                    style="@style/Widget.Taktu.Button.Outlined"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="14dp"
@@ -251,12 +251,12 @@
                     android:layout_marginTop="12dp"
                     android:lineSpacingMultiplier="1.55"
                     android:text="@string/ringmode_note"
-                    android:textAppearance="@style/Text.TaskAlarm.Meta"
+                    android:textAppearance="@style/Text.Taktu.Meta"
                     android:textColor="?attr/colorOnSurfaceVariant" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnTestRingMode"
-                    style="@style/Widget.TaskAlarm.Button.Outlined"
+                    style="@style/Widget.Taktu.Button.Outlined"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="14dp"
@@ -308,12 +308,12 @@
                     android:layout_marginTop="8dp"
                     android:lineSpacingMultiplier="1.55"
                     android:text="@string/quiet_note"
-                    android:textAppearance="@style/Text.TaskAlarm.Meta"
+                    android:textAppearance="@style/Text.Taktu.Meta"
                     android:textColor="?attr/colorOnSurfaceVariant" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnQuietManage"
-                    style="@style/Widget.TaskAlarm.Button.Outlined"
+                    style="@style/Widget.Taktu.Button.Outlined"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="14dp"
@@ -356,7 +356,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:lineSpacingMultiplier="1.5"
-                    android:textAppearance="@style/Text.TaskAlarm.Meta"
+                    android:textAppearance="@style/Text.Taktu.Meta"
                     android:textColor="?attr/colorOnSurfaceVariant" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -395,7 +395,7 @@
             android:background="@drawable/bg_note"
             android:lineSpacingMultiplier="1.7"
             android:padding="16dp"
-            android:textAppearance="@style/Text.TaskAlarm.Meta"
+            android:textAppearance="@style/Text.Taktu.Meta"
             android:textColor="?attr/colorOnSecondaryContainer" />
 
         <com.google.android.material.button.MaterialButton
@@ -415,7 +415,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnReschedule"
-            style="@style/Widget.TaskAlarm.Button.Outlined"
+            style="@style/Widget.Taktu.Button.Outlined"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginStart="16dp"
@@ -498,7 +498,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnCopyControl"
-                    style="@style/Widget.TaskAlarm.Button.Outlined"
+                    style="@style/Widget.Taktu.Button.Outlined"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="12dp"

@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="任务"
-                android:textAppearance="@style/Text.TaskAlarm.Title"
+                android:textAppearance="@style/Text.Taktu.Title"
                 android:textColor="?attr/colorOnSurface" />
 
             <ImageView

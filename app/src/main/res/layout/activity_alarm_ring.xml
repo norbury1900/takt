@@ -51,7 +51,7 @@
                 android:layout_marginTop="18dp"
                 android:letterSpacing="0.22"
                 android:text="@string/ring_tag_pre"
-                android:textAppearance="@style/Text.TaskAlarm.Label"
+                android:textAppearance="@style/Text.Taktu.Label"
                 android:textColor="?attr/colorPrimary" />
 
             <TextView
@@ -73,7 +73,7 @@
                 android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:lineSpacingMultiplier="1.6"
-                android:textAppearance="@style/Text.TaskAlarm.Body"
+                android:textAppearance="@style/Text.Taktu.Body"
                 android:textColor="?attr/colorOnSurfaceVariant" />
 
             <!-- 未完成清单：同一时间点还没做的，全部平铺列出来（不做卡片） -->
@@ -139,7 +139,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSnooze"
-            style="@style/Widget.TaskAlarm.Button.Outlined"
+            style="@style/Widget.Taktu.Button.Outlined"
             android:layout_width="match_parent"
             android:layout_height="54dp"
             android:layout_marginTop="10dp"
