@@ -25,7 +25,7 @@ class HeatmapView(context: Context, attrs: AttributeSet? = null) : View(context,
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
-    /** 传入 日期key(yyyy-MM-dd) -> 完成度(0..1)；没出现的日期 = 那天没任务 */
+    /** 传入 日期key(yyyy-MM-dd) -> 当天完成件数；没出现的日期 = 那天没任务 */
     fun setData(map: Map<String, Float>) {
         values = map
         days.clear()
@@ -67,12 +67,13 @@ class HeatmapView(context: Context, attrs: AttributeSet? = null) : View(context,
         }
         days.forEachIndexed { i, key ->
             if (key > today) return@forEachIndexed
-            val ratio = values[key] ?: return@forEachIndexed
+            val count = values[key] ?: return@forEachIndexed
+            // v3.34.142：深度按完成件数走（原来按完成度比例，做 1 件和做 6 件一样红）
             val alpha = when {
-                ratio <= 0f -> 0x59   // 该做但一件没做：最淡一档红
-                ratio < 0.34f -> 0x8C
-                ratio < 0.67f -> 0xBF
-                else -> 0xFF
+                count <= 0f -> 0x59   // 该做但一件没做：最淡一档红
+                count < 1.5f -> 0x8C  // 1 件
+                count < 2.5f -> 0xBF  // 2 件
+                else -> 0xFF          // 3 件及以上：最红
             }
             paint.color = ColorUtils.setAlphaComponent(accent, alpha)
             val l = (i / 7) * (c + gap)

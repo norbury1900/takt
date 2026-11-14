@@ -343,6 +343,16 @@
                         android:id="@+id/btnTimeInterval"
                         style="@style/Chip"
                         android:text="@string/time_mode_interval" />
+
+                    <!-- v3.34.142：添加时刻的 ＋ 提到模式芯片同一行右侧（用户 2026-11-14），不再放时刻行里 -->
+                    <ImageButton
+                        android:id="@+id/btnAddTime"
+                        android:layout_width="44dp"
+                        android:layout_height="40dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/time_add"
+                        android:src="@drawable/ic_add"
+                        app:tint="@color/app_text_sub" />
                 </LinearLayout>
 
                 <!-- 固定时刻：动态时刻芯片（点芯片删除）+ 「＋ 添加」 -->

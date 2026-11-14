@@ -96,6 +96,15 @@
     <string name="tab_history">历史</string>
     <string name="all_hint">只列还没到期的任务；已完成 / 已过期的一次性任务在「历史」</string>
     <string name="history_hint">已完成 / 已过期的一次性任务，按原定日期保留约一个月，超期不再显示</string>
+    <!-- 历史页多选删除（v3.34.142） -->
+    <string name="btn_manage">管理</string>
+    <string name="btn_manage_done">完成</string>
+    <string name="history_select_all">全选</string>
+    <string name="history_selected_fmt">已选 %1$d 条</string>
+    <string name="history_delete">删除</string>
+    <string name="history_select_none">先勾选要删除的任务</string>
+    <string name="history_delete_title">删除历史任务</string>
+    <string name="history_delete_msg">删除选中的 %1$d 条任务及其完成记录，不可恢复。</string>
     <string name="holiday_hint_fmt">节假日数据未覆盖 %1$d 年，放假与调休的判断可能不准</string>
     <string name="holiday_hint_close">关闭提示</string>
     <string name="pattern_yearly">年</string>

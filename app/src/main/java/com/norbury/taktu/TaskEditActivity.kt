@@ -898,6 +898,15 @@ class TaskEditActivity : BaseActivity() {
     /* ---------------- 每天时刻 ---------------- */
 
     private fun setupTimeSection() {
+        // ＋ 添加时刻（在模式芯片同一行右侧，v3.34.142）
+        findViewById<ImageButton>(R.id.btnAddTime).setOnClickListener {
+            TimeSheet(this@TaskEditActivity, "添加时刻", 20 * 60) { m ->
+                if (m !in fixedTimes) fixedTimes.add(m)
+                timeSpecActive = true
+                timeMode = TIME_FIXED
+                renderTimeSection(); renderPreview()
+            }.show()
+        }
         findViewById<MaterialButton>(R.id.btnTimeFixed).setOnClickListener {
             timeMode = TIME_FIXED
             timeSpecActive = true
@@ -945,7 +954,9 @@ class TaskEditActivity : BaseActivity() {
             "${Task.formatMin(ivStart)} · 每 ${IntervalSheet.label(ivStep)} · " +
                 getString(R.string.iv_end_fmt, Task.formatMin(ivEnd))
 
-        // 时刻芯片：已有时刻（点一下删除）+「＋ 添加」；允许全部删空，保存时统一校验
+        // 时刻芯片：已有时刻（点一下删除）；「＋ 添加」已移到模式芯片行右侧（v3.34.142）
+        findViewById<View>(R.id.btnAddTime).visibility =
+            if (timeMode == TIME_FIXED) View.VISIBLE else View.GONE
         val row = findViewById<LinearLayout>(R.id.llTimeChips)
         row.removeAllViews()
         if (timeMode != TIME_FIXED) {
@@ -955,31 +966,14 @@ class TaskEditActivity : BaseActivity() {
         }
         fixedTimes.sorted().forEach { min ->
             row.addView(timeChip(Task.formatMin(min), removable = true) {
+                // v3.34.142 修「假删除」：老任务（timeSpecActive=false）也渲染这颗芯片，
+                // 点它只动了内存列表，保存时仍走旧单时刻模型 → 删了白删，重进又回来。
+                // 点芯片即视为动过时刻区，落库走时刻表。
+                timeSpecActive = true
                 fixedTimes.remove(min)
                 renderTimeSection(); renderPreview()
             })
         }
-        // 添加按钮：图标，跟在时刻芯片右侧
-        val d = resources.displayMetrics.density
-        row.addView(ImageButton(this).apply {
-            setImageResource(R.drawable.ic_add)
-            imageTintList = android.content.res.ColorStateList.valueOf(
-                ContextCompat.getColor(this@TaskEditActivity, R.color.app_text_sub)
-            )
-            val tv = android.util.TypedValue()
-            if (theme.resolveAttribute(android.R.attr.selectableItemBackgroundBorderless, tv, true)) {
-                background = ContextCompat.getDrawable(this@TaskEditActivity, tv.resourceId)
-            }
-            layoutParams = LinearLayout.LayoutParams((44 * d).toInt(), (40 * d).toInt())
-            contentDescription = getString(R.string.time_add)
-            setOnClickListener {
-                TimeSheet(this@TaskEditActivity, "添加时刻", 20 * 60) { m ->
-                    if (m !in fixedTimes) fixedTimes.add(m)
-                    timeSpecActive = true
-                    renderTimeSection(); renderPreview()
-                }.show()
-            }
-        })
         // 时刻表变了，开始 / 截止钟点要跟着重算（锚点 = 最早时刻）
         renderOffsets()
     }

@@ -139,7 +139,9 @@ class StatsActivity : BaseActivity() {
                 ovPct / 100f
             )
 
-            // ── 热力图（v3.34.72，GitHub 风格）：近 26 周每天的完成度 ──
+            // ── 热力图（v3.34.72，GitHub 风格）：近 26 周每天的完成件数 ──
+            // v3.34.142 改：深度按「当天完成了几件」走。原来按完成度比例（0..1），
+            // 天花板就是 1，做 1 件和做 6 件一样红，看不出差别（用户 2026-11-14）
             val recordsByDay = allRecords.groupBy { it.dateKey }
             val heat = HashMap<String, Float>()
             for (i in 181 downTo 0) {
@@ -156,7 +158,7 @@ class StatsActivity : BaseActivity() {
                         }
                     }
                 }
-                if (due > 0) heat[key] = done.toFloat() / due
+                if (due > 0) heat[key] = done.toFloat()
             }
             findViewById<com.norbury.taktu.util.HeatmapView>(R.id.heatmap).setData(heat)
 

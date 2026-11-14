@@ -38,6 +38,7 @@ import com.norbury.taktu.data.Task
 import com.norbury.taktu.data.TaskListBuilder
 import com.norbury.taktu.data.TaskRecord
 import com.norbury.taktu.data.TaskStatus
+import com.norbury.taktu.sheet.ConfirmSheet
 import com.norbury.taktu.sheet.MonthSheet
 import com.norbury.taktu.util.MiLinkBridge
 import com.norbury.taktu.util.Permissions
@@ -66,6 +67,9 @@ class MainActivity : BaseActivity() {
 
     /** 当前页签：今天 / 计划 / 已完成 / 全部 */
     private var tab = TAB_TODAY
+
+    /** 历史页多选删除的管理模式（v3.34.142），离开历史页 / 删完自动退出 */
+    private var manageMode = false
 
     /** 计划页的月历状态 */
     private var calYear = 0
@@ -115,6 +119,12 @@ class MainActivity : BaseActivity() {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = this@MainActivity.adapter
         }
+
+        // 历史页多选删除（v3.34.142）：管理入口在顶栏，操作条浮在导航上方
+        adapter.onSelectionChanged = { renderManageBar() }
+        findViewById<TextView>(R.id.btnManage).setOnClickListener { setManage(!manageMode) }
+        findViewById<View>(R.id.btnSelectAll).setOnClickListener { adapter.selectAllVisible() }
+        findViewById<View>(R.id.btnDeleteSelected).setOnClickListener { confirmDeleteSelected() }
 
         findViewById<ImageButton>(R.id.btnNew).setOnClickListener { openEdit(-1L) }
 
@@ -177,6 +187,7 @@ class MainActivity : BaseActivity() {
     private fun switchTab(which: Int) {
         if (tab == which) return
         tab = which
+        if (manageMode) setManage(false)   // 离开历史页顺手退出多选
         findViewById<View>(R.id.boxMenu).visibility = View.GONE
         renderTabs()
         loadTasks()
@@ -223,6 +234,9 @@ class MainActivity : BaseActivity() {
         val topMenu = findViewById<View>(R.id.btnMenu)
         topMenu.visibility = View.VISIBLE
         topTitle.visibility = View.VISIBLE
+        // 「管理」入口只在历史页出现（v3.34.142 多选删除）
+        findViewById<TextView>(R.id.btnManage).visibility =
+            if (tab == TAB_HISTORY) View.VISIBLE else View.GONE
         topTitle.text = when (tab) {
             TAB_TODAY -> "Today"
             TAB_PLAN -> "Plan"
@@ -846,6 +860,54 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    /* ---------------- 历史页多选删除（v3.34.142） ---------------- */
+
+    private fun setManage(on: Boolean) {
+        manageMode = on
+        adapter.setManageMode(on)
+        findViewById<TextView>(R.id.btnManage).text =
+            getString(if (on) R.string.btn_manage_done else R.string.btn_manage)
+        renderManageBar()
+    }
+
+    private fun renderManageBar() {
+        val bar = findViewById<View>(R.id.barHistoryActions)
+        bar.visibility =
+            if (manageMode && tab == TAB_HISTORY) View.VISIBLE else View.GONE
+        findViewById<TextView>(R.id.tvSelectedCount).text =
+            getString(R.string.history_selected_fmt, adapter.selectedIds.size)
+    }
+
+    private fun confirmDeleteSelected() {
+        val ids = adapter.selectedIds.toSet()
+        if (ids.isEmpty()) {
+            toast(getString(R.string.history_select_none))
+            return
+        }
+        ConfirmSheet(
+            this,
+            title = getString(R.string.history_delete_title),
+            message = getString(R.string.history_delete_msg, ids.size),
+            confirmText = getString(R.string.history_delete),
+            onConfirm = { deleteSelected(ids) }
+        )
+    }
+
+    private fun deleteSelected(ids: Set<Long>) {
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                val dao = AppDatabase.get(this@MainActivity).taskDao()
+                latestTasks.filter { it.id in ids }.forEach { t ->
+                    dao.delete(t)
+                    MiLinkBridge.removeFromCalendar(this@MainActivity, t.id)
+                }
+            }
+            ids.forEach { AlarmScheduler.cancel(this@MainActivity, it) }
+            setManage(false)
+            loadTasks()
+        }
+    }
+
     private fun toast(msg: String) = Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 }
 
@@ -950,6 +1012,42 @@ class TaskAdapter(
 
     /** 历史页模式：卡片状态按「已完成 / 已过期」显示，meta 附原定日期 */
     private var historyMode = false
+
+    /** 历史页管理模式（v3.34.142）：点卡片切换选中，配合底部全选 / 删除 */
+    var manageMode = false
+        private set
+    val selectedIds = mutableSetOf<Long>()
+
+    /** 选区变化后回调（活动页刷新计数条） */
+    var onSelectionChanged: (() -> Unit)? = null
+
+    fun setManageMode(on: Boolean) {
+        manageMode = on
+        selectedIds.clear()
+        notifyDataSetChanged()
+    }
+
+    /** 点卡片切换选中 */
+    fun toggleSelected(id: Long) {
+        if (!selectedIds.add(id)) selectedIds.remove(id)
+        notifyDataSetChanged()
+        onSelectionChanged?.invoke()
+    }
+
+    /** 全选 / 再点一次全不选（按当前列表实际渲染的任务算，含折叠组里的） */
+    fun selectAllVisible() {
+        val ids = rows.flatMap {
+            when (it) {
+                is Row.Group -> it.tasks.map { t -> t.id }
+                is Row.Flat -> listOf(it.task.id)
+                else -> emptyList()
+            }
+        }
+        if (ids.isNotEmpty() && ids.all { it in selectedIds }) selectedIds.removeAll(ids.toSet())
+        else selectedIds.addAll(ids)
+        notifyDataSetChanged()
+        onSelectionChanged?.invoke()
+    }
 
     /** 各任务今天已勾选的清单项下标（按天存，跨天自动重来） */
     private var itemChecks: Map<Long, Set<Int>> = emptyMap()
@@ -1733,7 +1831,10 @@ class TaskAdapter(
         Ui.pill(holder.status, pillKind)
         // 点卡片进详情（v3.34.65：原「详情」按钮取消，入口上移到整卡；
         // 时刻行 / 清单行 / 滑杆 / 左侧按钮各自消费自己的点击，不会误触）
-        holder.itemView.setOnClickListener { onOpenCheckIn(t) }
+        // 管理模式（v3.34.142）下点卡片 = 切换选中，不进详情
+        holder.itemView.setOnClickListener {
+            if (manageMode) toggleSelected(t.id) else onOpenCheckIn(t)
+        }
         bindPriorityBar(holder, t)
         renderItems(holder, t)
 
@@ -1767,6 +1868,25 @@ class TaskAdapter(
         }
         card.setCardBackgroundColor(ContextCompat.getColor(c, bgRes))
         card.setStrokeColor(ContextCompat.getColor(c, strokeRes))
+
+        // ── 管理模式（历史页多选删除，v3.34.142）──
+        // 选中 = 主题色描边 + 整卡恢复亮度；未选中整卡压暗。
+        // 操作区（进度 / 时刻 / 清单）全部藏掉，防止点卡片选中的同时误触打卡控件
+        if (manageMode) {
+            val on = t.id in selectedIds
+            card.strokeWidth = (2 * c.resources.displayMetrics.density).toInt()
+            card.setStrokeColor(
+                ContextCompat.getColor(c, if (on) R.color.accent else strokeRes)
+            )
+            holder.itemView.alpha = if (on) 1f else 0.45f
+            holder.boxProgress.visibility = View.GONE
+            holder.btnToggle.visibility = View.GONE
+            holder.rowTimes.visibility = View.GONE
+            holder.rowItems.visibility = View.GONE
+            holder.footerDivider.visibility = View.GONE
+        } else {
+            holder.itemView.alpha = 1f
+        }
 
         // ── 进度区：有目标次数 → 可拖动进度条；没有 → 「标记完成」按钮 ──
         val ctx = holder.itemView.context

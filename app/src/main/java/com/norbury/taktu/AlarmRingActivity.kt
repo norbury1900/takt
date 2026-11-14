@@ -520,6 +520,7 @@ class AlarmRingActivity : BaseActivity() {
     }
 
     override fun onBackPressed() {
-        // 响铃页不允许返回键关掉，必须做选择 —— 保持响铃，什么都不做
+        // 返回键 = 「我知道了」：停铃退出，不标记完成（用户 2026-11-14：不必强制按钮）
+        acknowledge()
     }
 }

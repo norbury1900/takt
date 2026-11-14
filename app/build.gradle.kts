@@ -12,8 +12,8 @@ android {
         applicationId = "com.norbury.taktu"
         minSdk = 26          // 动态取色需要 Android 8+，但核心动态色彩自 Android 12 起
         targetSdk = 35       // 小米 15 运行 Android 15
-        versionCode = 236
-        versionName = "3.34.141"
+        versionCode = 237
+        versionName = "3.34.142"
     }
 
     buildTypes {
